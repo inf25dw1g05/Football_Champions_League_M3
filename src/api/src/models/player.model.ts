@@ -1,4 +1,8 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, belongsTo, hasMany, hasOne} from '@loopback/repository';
+import {Team} from './team.model';
+import {MatchEvent} from './match-event.model';
+import {Stats} from './stats.model';
+import {Match} from './match.model';
 
 @model()
 export class Player extends Entity {
@@ -24,18 +28,22 @@ export class Player extends Entity {
     type: 'string',
   })
   nationality?: string;
-
-  @property({
-    type: 'number',
-    required: true,
-  })
-  team_id: number;
-
   @property({
     type: 'number',
   })
   shirt_number?: number;
 
+  @belongsTo(() => Team, {name: 'team'})
+  team_id: number;
+
+  @hasMany(() => MatchEvent, {keyTo: 'player_id'})
+  events: MatchEvent[];
+
+  @hasOne(() => Stats, {keyTo: 'player_id'})
+  stats: Stats;
+
+  @hasMany(() => Match, {through: {model: () => MatchEvent, keyFrom: 'player_id', keyTo: 'match_id'}})
+  matchesWithEvents: Match[];
 
   constructor(data?: Partial<Player>) {
     super(data);

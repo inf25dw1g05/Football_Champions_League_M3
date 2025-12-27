@@ -1,4 +1,6 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, belongsTo} from '@loopback/repository';
+import {Match} from './match.model';
+import {Player} from './player.model';
 
 @model()
 export class MatchEvent extends Entity {
@@ -8,19 +10,6 @@ export class MatchEvent extends Entity {
     generated: true,
   })
   event_id?: number;
-
-  @property({
-    type: 'number',
-    required: true,
-  })
-  match_id: number;
-
-  @property({
-    type: 'number',
-    required: true,
-  })
-  player_id: number;
-
   @property({
     type: 'string',
     required: true,
@@ -32,6 +21,11 @@ export class MatchEvent extends Entity {
   })
   minute?: number;
 
+  @belongsTo(() => Match, {name: 'match'})
+  match_id: number;
+
+  @belongsTo(() => Player, {name: 'player'})
+  player_id: number;
 
   constructor(data?: Partial<MatchEvent>) {
     super(data);
