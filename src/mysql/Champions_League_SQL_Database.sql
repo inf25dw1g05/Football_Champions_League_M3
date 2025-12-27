@@ -28,19 +28,6 @@ CREATE TABLE IF NOT EXISTS player (
   UNIQUE (team_id, shirt_number)
 );
 
--- Tabela 'stats' -> tabela nova em relação à BD usada no M2
-CREATE TABLE IF NOT EXISTS stats (
-  player_id INT NOT NULL,
-  total_goals INT DEFAULT 0,
-  total_assists INT DEFAULT 0,
-  total_yellow_cards INT DEFAULT 0,
-  total_red_cards INT DEFAULT 0,
-  PRIMARY KEY (player_id),
-  CONSTRAINT fk_stats_player
-  FOREIGN KEY (player_id) REFERENCES player(player_id)
-  ON DELETE CASCADE
-);
-
 CREATE TABLE IF NOT EXISTS `match` (
   match_id INT AUTO_INCREMENT,
   home_team_id INT NOT NULL,
@@ -73,6 +60,37 @@ CREATE TABLE IF NOT EXISTS match_event (
  FOREIGN KEY (player_id) REFERENCES player(player_id),
  CONSTRAINT ck1_match_event
  CHECK (`minute` >= 1 AND `minute` <= 90)
+);
+
+-- Tabela 'stats' -> tabela nova em relação à BD usada no M2
+CREATE TABLE IF NOT EXISTS stats (
+  player_id INT NOT NULL,
+  total_goals INT DEFAULT 0,
+  total_assists INT DEFAULT 0,
+  total_yellow_cards INT DEFAULT 0,
+  total_red_cards INT DEFAULT 0,
+  PRIMARY KEY (player_id),
+  CONSTRAINT fk_stats_player
+  FOREIGN KEY (player_id) REFERENCES player(player_id)
+  ON DELETE CASCADE
+);
+
+-- Tabela 'standings' -> tabela nova em relação à BD usada no M2
+
+CREATE TABLE IF NOT EXISTS standings (
+    team_id INT NOT NULL,
+    group_name VARCHAR(100),
+    team_name VARCHAR(100) NOT NULL,
+    points INT DEFAULT 0,
+    goal_diff INT DEFAULT 0,
+    goals_for INT DEFAULT 0,
+    goals_against INT DEFAULT 0,
+    played INT DEFAULT 0,
+    win INT DEFAULT 0,
+    draw INT DEFAULT 0,
+    loss INT DEFAULT 0,
+    PRIMARY KEY (team_id),
+    CONSTRAINT fk1_team FOREIGN KEY (team_id) REFERENCES team(team_id)
 );
 
 -- Triggers para atualizar a tabela 'stats' automaticamente
@@ -143,6 +161,131 @@ BEGIN
         total_yellow_cards = total_yellow_cards + (NEW.event_type = 'Yellow Card'),
         total_red_cards = total_red_cards + (NEW.event_type = 'Red Card')
     WHERE player_id = NEW.player_id;
+END $$
+
+DELIMITER ;
+-- Triggers para atualizar a tabela 'standings' automaticamente
+DELIMITER $$
+CREATE TRIGGER after_team_insert_standings
+AFTER INSERT ON team
+FOR EACH ROW
+BEGIN
+    INSERT INTO standings (team_id, group_name, team_name, points, goal_diff, goals_for, goals_against, played, win, draw, loss)
+    VALUES (NEW.team_id, NEW.group_name, NEW.name, 0, 0, 0, 0, 0, 0, 0, 0);
+END $$
+
+CREATE TRIGGER after_team_update_standings
+AFTER UPDATE ON team
+FOR EACH ROW
+BEGIN
+    IF OLD.name <> NEW.name OR OLD.group_name <> NEW.group_name THEN
+        UPDATE standings
+        SET 
+            team_name = NEW.name,
+            group_name = NEW.group_name
+        WHERE team_id = NEW.team_id;
+    END IF;
+END $$
+
+-- Aqui usamos before senao a db reclama de foregein key
+CREATE TRIGGER before_team_delete_standings
+BEFORE DELETE ON team
+FOR EACH ROW
+BEGIN
+    DELETE FROM standings WHERE team_id = OLD.team_id;
+END $$
+
+CREATE TRIGGER after_match_insert_standings
+AFTER INSERT ON `match`
+FOR EACH ROW
+BEGIN
+    -- Equipa da casa
+    UPDATE standings 
+    SET
+        played = played + 1,
+        goals_for = goals_for + NEW.home_score,
+        goals_against = goals_against + NEW.away_score,
+        goal_diff = goal_diff + (NEW.home_score - NEW.away_score),
+        win = win + (CASE WHEN NEW.home_score > NEW.away_score THEN 1 ELSE 0 END),
+        draw = draw + (CASE WHEN NEW.home_score = NEW.away_score THEN 1 ELSE 0 END),
+        loss = loss + (CASE WHEN NEW.home_score < NEW.away_score THEN 1 ELSE 0 END),
+        points = points + (CASE WHEN NEW.home_score > NEW.away_score THEN 3 WHEN NEW.home_score = NEW.away_score THEN 1 ELSE 0 END)
+    WHERE team_id = NEW.home_team_id;
+
+    -- Equipa Visitante
+    UPDATE standings 
+    SET
+        played = played + 1,
+        goals_for = goals_for + NEW.away_score,
+        goals_against = goals_against + NEW.home_score,
+        goal_diff = goal_diff + (NEW.away_score - NEW.home_score),
+        win = win + (CASE WHEN NEW.away_score > NEW.home_score THEN 1 ELSE 0 END),
+        draw = draw + (CASE WHEN NEW.away_score = NEW.home_score THEN 1 ELSE 0 END),
+        loss = loss + (CASE WHEN NEW.away_score < NEW.home_score THEN 1 ELSE 0 END),
+        points = points + (CASE WHEN NEW.away_score > NEW.home_score THEN 3 WHEN NEW.away_score = NEW.home_score THEN 1 ELSE 0 END)
+    WHERE team_id = NEW.away_team_id;
+END $$
+
+CREATE TRIGGER after_match_update_standings
+AFTER UPDATE ON `match`
+FOR EACH ROW
+BEGIN
+    IF OLD.home_score <> NEW.home_score OR OLD.away_score <> NEW.away_score THEN
+        -- Equipa da casa
+        UPDATE standings 
+        SET
+            goals_for = goals_for - OLD.home_score  + NEW.home_score,
+            goals_against = goals_against - OLD.away_score + NEW.away_score,
+            goal_diff = goal_diff - (OLD.home_score - OLD.away_score) + (NEW.home_score - NEW.away_score),
+            win = win - (CASE WHEN OLD.home_score > OLD.away_score THEN 1 ELSE 0 END)  + (CASE WHEN NEW.home_score > NEW.away_score THEN 1 ELSE 0 END),
+            draw = draw - (CASE WHEN OLD.home_score = OLD.away_score THEN 1 ELSE 0 END) + (CASE WHEN NEW.home_score = NEW.away_score THEN 1 ELSE 0 END),
+            loss = loss - (CASE WHEN OLD.home_score < OLD.away_score THEN 1 ELSE 0 END) + (CASE WHEN NEW.home_score < NEW.away_score THEN 1 ELSE 0 END),
+            points = points - (CASE WHEN OLD.home_score > OLD.away_score THEN 3 WHEN OLD.home_score = OLD.away_score THEN 1 ELSE 0 END) + (CASE WHEN NEW.home_score > NEW.away_score THEN 3 WHEN NEW.home_score = NEW.away_score THEN 1 ELSE 0 END)
+        WHERE team_id = NEW.home_team_id;
+
+        -- Equipa Visitante
+        UPDATE standings 
+        SET
+            goals_for = goals_for - OLD.away_score + NEW.away_score,
+            goals_against = goals_against - OLD.home_score + NEW.home_score,
+            goal_diff = goal_diff - (OLD.away_score - OLD.home_score) + (NEW.away_score - NEW.home_score),
+            win = win - (CASE WHEN OLD.away_score > OLD.home_score THEN 1 ELSE 0 END) + (CASE WHEN NEW.away_score > NEW.home_score THEN 1 ELSE 0 END),
+            draw = draw - (CASE WHEN OLD.away_score = OLD.home_score THEN 1 ELSE 0 END) + (CASE WHEN NEW.away_score = NEW.home_score THEN 1 ELSE 0 END),
+            loss = loss - (CASE WHEN OLD.away_score < OLD.home_score THEN 1 ELSE 0 END) + (CASE WHEN NEW.away_score < NEW.home_score THEN 1 ELSE 0 END),
+            points = points - (CASE WHEN OLD.away_score > OLD.home_score THEN 3 WHEN OLD.away_score = OLD.home_score THEN 1 ELSE 0 END) + (CASE WHEN NEW.away_score > NEW.home_score THEN 3 WHEN NEW.away_score = NEW.home_score THEN 1 ELSE 0 END)
+        WHERE team_id = NEW.away_team_id;
+    END IF;
+END $$
+
+CREATE TRIGGER after_match_delete_standings
+AFTER DELETE ON `match`
+FOR EACH ROW
+BEGIN
+    -- Equipa da casa
+    UPDATE standings 
+    SET
+        played = played - 1,
+        goals_for = goals_for - OLD.home_score,
+        goals_against = goals_against - OLD.away_score,
+        goal_diff = goal_diff - (OLD.home_score - OLD.away_score),
+        win = win - (CASE WHEN OLD.home_score > OLD.away_score THEN 1 ELSE 0 END),
+        draw = draw - (CASE WHEN OLD.home_score = OLD.away_score THEN 1 ELSE 0 END),
+        loss = loss - (CASE WHEN OLD.home_score < OLD.away_score THEN 1 ELSE 0 END),
+        points = points - (CASE WHEN OLD.home_score > OLD.away_score THEN 3 WHEN OLD.home_score = OLD.away_score THEN 1 ELSE 0 END)
+    WHERE team_id = OLD.home_team_id;
+
+    -- Equipa Visitante
+    UPDATE standings 
+    SET
+        played = played - 1,
+        goals_for = goals_for - OLD.away_score,
+        goals_against = goals_against - OLD.home_score,
+        goal_diff = goal_diff - (OLD.away_score - OLD.home_score),
+        win = win - (CASE WHEN OLD.away_score > OLD.home_score THEN 1 ELSE 0 END),
+        draw = draw - (CASE WHEN OLD.away_score = OLD.home_score THEN 1 ELSE 0 END),
+        loss = loss - (CASE WHEN OLD.away_score < OLD.home_score THEN 1 ELSE 0 END),
+        points = points - (CASE WHEN OLD.away_score > OLD.home_score THEN 3 WHEN OLD.away_score = OLD.home_score THEN 1 ELSE 0 END)
+    WHERE team_id = OLD.away_team_id;
 END $$
 
 DELIMITER ;
