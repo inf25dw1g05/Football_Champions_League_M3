@@ -1,4 +1,7 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, hasMany, hasOne} from '@loopback/repository';
+import {Player} from './player.model';
+import {Standings} from './standings.model';
+import {Match} from './match.model';
 
 @model()
 export class Team extends Entity {
@@ -30,6 +33,17 @@ export class Team extends Entity {
   })
   group_name?: string;
 
+  @hasMany(() => Player, {keyTo: 'team_id'})
+  players: Player[];
+
+  @hasOne(() => Standings, {keyTo: 'id'})
+  standings: Standings;
+
+  @hasMany(() => Match, {keyTo: 'home_team_id'})
+  homeMatches: Match[];
+
+  @hasMany(() => Match, {keyTo: 'away_team_id'})
+  awayMatches: Match[];
 
   constructor(data?: Partial<Team>) {
     super(data);
