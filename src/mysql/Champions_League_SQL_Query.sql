@@ -3,7 +3,7 @@
 
 USE champions_league;
 
-INSERT INTO team (team_id, name, country, coach, group_name) VALUES
+INSERT INTO team (id, name, country, coach, group_name) VALUES
 (1,  'Bayern', 'Germany', 'Thomas Tuchel', 'A'),
 (2,  'FC Copenhagen', 'Denmark', 'Jacob Neestrup', 'A'),
 (3,  'Galatasaray', 'Turkey', 'Okan Buruk', 'A'),
@@ -44,7 +44,7 @@ INSERT INTO team (team_id, name, country, coach, group_name) VALUES
 (31, 'Shakhtar', 'Ukraine', 'Marino Pušić', 'H'),
 (32, 'Antwerp', 'Belgium', 'Mark van Bommel', 'H');
 
-INSERT INTO player (player_id, name, position, nationality, team_id, shirt_number) VALUES
+INSERT INTO player (id, name, position, nationality, team_id, shirt_number) VALUES
 -- Guarda-Redes
 (1, 'Manuel Neuer', 'Goalkeeper', 'Germany', 1, 1),
 (2, 'Daniel Peretz', 'Goalkeeper', 'Israel', 1, 18),
@@ -80,7 +80,7 @@ INSERT INTO player (player_id, name, position, nationality, team_id, shirt_numbe
 (26, 'Thomas Müller', 'Forward', 'Germany', 1, 25),
 (27, 'Mathys Tel', 'Forward', 'France', 1, 39);
 
-INSERT INTO player (player_id, name, position, nationality, team_id, shirt_number) VALUES
+INSERT INTO player (id, name, position, nationality, team_id, shirt_number) VALUES
 -- Guarda-Redes
 (28, 'Kamil Grabara', 'Goalkeeper', 'Poland', 2, 1),
 (29, 'Theo Sander', 'Goalkeeper', 'Denmark', 2, 21),
@@ -114,7 +114,7 @@ INSERT INTO player (player_id, name, position, nationality, team_id, shirt_numbe
 (51, 'Orri Óskarsson', 'Forward', 'Iceland', 2, 18),
 (52, 'Elias Achouri', 'Forward', 'Tunisia', 2, 30);
 
-INSERT INTO player (player_id, name, position, nationality, team_id, shirt_number) VALUES
+INSERT INTO player (id, name, position, nationality, team_id, shirt_number) VALUES
 -- Guarda-Redes
 (53, 'Fernando Muslera', 'Goalkeeper', 'Uruguay', 3, 1),
 (54, 'Günay Güvenç', 'Goalkeeper', 'Turkey', 3, 19),
@@ -151,7 +151,7 @@ INSERT INTO player (player_id, name, position, nationality, team_id, shirt_numbe
 (79, 'Cédric Bakambu', 'Forward', 'DR Congo', 3, 94), -- Saiu em Jan 2024 (Betis)
 (80, 'Carlos Vinícius', 'Forward', 'Brazil', 3, 95); -- Chegou em Fev 2024
 
-INSERT INTO player (player_id, name, position, nationality, team_id, shirt_number) VALUES
+INSERT INTO player (id, name, position, nationality, team_id, shirt_number) VALUES
 -- Guarda-Redes
 (81, 'Altay Bayındır', 'Goalkeeper', 'Turkey', 4, 1),
 (82, 'Tom Heaton', 'Goalkeeper', 'England', 4, 22),
@@ -192,7 +192,7 @@ INSERT INTO player (player_id, name, position, nationality, team_id, shirt_numbe
 (111, 'Facundo Pellistri', 'Forward', 'Uruguay', 4, 28), -- Saiu em Jan 2024
 (112, 'Omari Forson', 'Forward', 'England', 4, 62);
 
-INSERT INTO player (player_id, name, position, nationality, team_id, shirt_number) VALUES
+INSERT INTO player (id, name, position, nationality, team_id, shirt_number) VALUES
 -- Guarda-Redes
 (113, 'Aaron Ramsdale', 'Goalkeeper', 'England', 5, 1),
 (114, 'David Raya', 'Goalkeeper', 'Spain', 5, 22),
@@ -226,7 +226,7 @@ INSERT INTO player (player_id, name, position, nationality, team_id, shirt_numbe
 (136, 'Leandro Trossard', 'Forward', 'Belgium', 5, 19),
 (137, 'Reiss Nelson', 'Forward', 'England', 5, 24);
 
-INSERT INTO player (player_id, name, position, nationality, team_id, shirt_number) VALUES
+INSERT INTO player (id, name, position, nationality, team_id, shirt_number) VALUES
 -- Guarda-Redes
 (138, 'Walter Benítez', 'Goalkeeper', 'Argentina', 6, 1),
 (139, 'Joël Drommel', 'Goalkeeper', 'Netherlands', 6, 16),
@@ -260,7 +260,7 @@ INSERT INTO player (player_id, name, position, nationality, team_id, shirt_numbe
 (161, 'Hirving Lozano', 'Forward', 'Mexico', 6, 27),
 (162, 'Yorbe Vertessen', 'Forward', 'Belgium', 6, 32); -- Saiu em Jan 2024
 
-INSERT INTO player (player_id, name, position, nationality, team_id, shirt_number) VALUES
+INSERT INTO player (id, name, position, nationality, team_id, shirt_number) VALUES
 -- Guarda-Redes
 (163, 'Brice Samba', 'Goalkeeper', 'France', 7, 30),
 (164, 'Jean-Louis Leca', 'Goalkeeper', 'France', 7, 16),
@@ -296,7 +296,7 @@ INSERT INTO player (player_id, name, position, nationality, team_id, shirt_numbe
 (188, 'Morgan Guilavogui', 'Forward', 'Guinea', 7, 27),
 (189, 'Ayanda Sishuba', 'Forward', 'Belgium', 7, 32);
 
-INSERT INTO player (player_id, name, position, nationality, team_id, shirt_number) VALUES
+INSERT INTO player (id, name, position, nationality, team_id, shirt_number) VALUES
 -- Guarda-Redes
 (190, 'Marko Dmitrović', 'Goalkeeper', 'Serbia', 8, 1),
 (191, 'Ørjan Nyland', 'Goalkeeper', 'Norway', 8, 13),
@@ -334,7 +334,7 @@ INSERT INTO player (player_id, name, position, nationality, team_id, shirt_numbe
 (217, 'Youssef En-Nesyri', 'Forward', 'Morocco', 8, 15),
 (218, 'Erik Lamela', 'Forward', 'Argentina', 8, 17);
 
-INSERT INTO player (player_id, name, position, nationality, team_id, shirt_number) VALUES
+INSERT INTO player (id, name, position, nationality, team_id, shirt_number) VALUES
 -- Guarda-Redes
 (219, 'Thibaut Courtois', 'Goalkeeper', 'Belgium', 9, 1),
 (220, 'Andriy Lunin', 'Goalkeeper', 'Ukraine', 9, 13),
@@ -367,7 +367,7 @@ INSERT INTO player (player_id, name, position, nationality, team_id, shirt_numbe
 (241, 'Joselu', 'Forward', 'Spain', 9, 14),
 (242, 'Brahim Díaz', 'Forward', 'Morocco', 9, 21);
 
-INSERT INTO player (player_id, name, position, nationality, team_id, shirt_number) VALUES
+INSERT INTO player (id, name, position, nationality, team_id, shirt_number) VALUES
 -- Guarda-Redes
 (243, 'Alex Meret', 'Goalkeeper', 'Italy', 10, 1),
 (244, 'Nikita Contini', 'Goalkeeper', 'Italy', 10, 14),
@@ -407,7 +407,7 @@ INSERT INTO player (player_id, name, position, nationality, team_id, shirt_numbe
 (272, 'Khvicha Kvaratskhelia', 'Forward', 'Georgia', 10, 77),
 (273, 'Giacomo Raspadori', 'Forward', 'Italy', 10, 81);
 
-INSERT INTO player (player_id, name, position, nationality, team_id, shirt_number) VALUES
+INSERT INTO player (id, name, position, nationality, team_id, shirt_number) VALUES
 -- Guarda-Redes
 (274, 'Matheus', 'Goalkeeper', 'Brazil', 11, 1),
 (275, 'Lukáš Horníček', 'Goalkeeper', 'Czech Republic', 11, 12),
@@ -442,7 +442,7 @@ INSERT INTO player (player_id, name, position, nationality, team_id, shirt_numbe
 (298, 'Ricardo Horta', 'Forward', 'Portugal', 11, 21),
 (299, 'Simon Banza', 'Forward', 'DR Congo', 11, 23);
 
-INSERT INTO player (player_id, name, position, nationality, team_id, shirt_number) VALUES
+INSERT INTO player (id, name, position, nationality, team_id, shirt_number) VALUES
 -- Guarda-Redes
 (300, 'Frederik Rønnow', 'Goalkeeper', 'Denmark', 12, 1),
 (301, 'Jakob Busk', 'Goalkeeper', 'Denmark', 12, 12),
@@ -476,7 +476,7 @@ INSERT INTO player (player_id, name, position, nationality, team_id, shirt_numbe
 (323, 'Kevin Behrens', 'Forward', 'Germany', 12, 17), -- Saiu em Jan 2024
 (324, 'Sheraldo Becker', 'Forward', 'Suriname', 12, 27); -- Saiu em Jan 2024
 
-INSERT INTO player (player_id, name, position, nationality, team_id, shirt_number) VALUES
+INSERT INTO player (id, name, position, nationality, team_id, shirt_number) VALUES
 -- Guarda-Redes
 (325, 'Álex Remiro', 'Goalkeeper', 'Spain', 13, 1),
 (326, 'Unai Marrero', 'Goalkeeper', 'Spain', 13, 32),
@@ -510,7 +510,7 @@ INSERT INTO player (player_id, name, position, nationality, team_id, shirt_numbe
 (348, 'Umar Sadiq', 'Forward', 'Nigeria', 13, 19),
 (349, 'André Silva', 'Forward', 'Portugal', 13, 21);
 
-INSERT INTO player (player_id, name, position, nationality, team_id, shirt_number) VALUES
+INSERT INTO player (id, name, position, nationality, team_id, shirt_number) VALUES
 -- Guarda-Redes
 (350, 'Yann Sommer', 'Goalkeeper', 'Switzerland', 14, 1),
 (351, 'Raffaele Di Gennaro', 'Goalkeeper', 'Italy', 14, 12),
@@ -544,7 +544,7 @@ INSERT INTO player (player_id, name, position, nationality, team_id, shirt_numbe
 (373, 'Lautaro Martínez', 'Forward', 'Argentina', 14, 10),
 (374, 'Alexis Sánchez', 'Forward', 'Chile', 14, 70);
 
-INSERT INTO player (player_id, name, position, nationality, team_id, shirt_number) VALUES
+INSERT INTO player (id, name, position, nationality, team_id, shirt_number) VALUES
 -- Guarda-Redes
 (375, 'Anatoliy Trubin', 'Goalkeeper', 'Ukraine', 15, 1),
 (376, 'Samuel Soares', 'Goalkeeper', 'Portugal', 15, 24),
@@ -580,7 +580,7 @@ INSERT INTO player (player_id, name, position, nationality, team_id, shirt_numbe
 (400, 'Marcos Leonardo', 'Forward', 'Brazil', 15, 36), -- Chegou em Jan 2024
 (401, 'Tiago Gouveia', 'Forward', 'Portugal', 15, 47);
 
-INSERT INTO player (player_id, name, position, nationality, team_id, shirt_number) VALUES
+INSERT INTO player (id, name, position, nationality, team_id, shirt_number) VALUES
 -- Guarda-Redes
 (402, 'Alexander Schlager', 'Goalkeeper', 'Austria', 16, 24),
 (403, 'Nico Mantl', 'Goalkeeper', 'Germany', 16, 1), -- Saiu em Jan 2024
@@ -613,7 +613,7 @@ INSERT INTO player (player_id, name, position, nationality, team_id, shirt_numbe
 (424, 'Petar Ratkov', 'Forward', 'Serbia', 16, 21),
 (425, 'Roko Šimić', 'Forward', 'Croatia', 16, 23);
 
-INSERT INTO player (player_id, name, position, nationality, team_id, shirt_number) VALUES
+INSERT INTO player (id, name, position, nationality, team_id, shirt_number) VALUES
 -- Guarda-Redes
 (426, 'Ivo Grbić', 'Goalkeeper', 'Croatia', 17, 1), -- Saiu em Jan 2024
 (427, 'Jan Oblak', 'Goalkeeper', 'Slovenia', 17, 13),
@@ -648,7 +648,7 @@ INSERT INTO player (player_id, name, position, nationality, team_id, shirt_numbe
 (450, 'Ángel Correa', 'Forward', 'Argentina', 17, 10),
 (451, 'Álvaro Morata', 'Forward', 'Spain', 17, 19);
 
-INSERT INTO player (player_id, name, position, nationality, team_id, shirt_number) VALUES
+INSERT INTO player (id, name, position, nationality, team_id, shirt_number) VALUES
 -- Guarda-Redes
 (452, 'Luigi Sepe', 'Goalkeeper', 'Italy', 18, 33),
 (453, 'Christos Mandas', 'Goalkeeper', 'Greece', 18, 35),
@@ -682,7 +682,7 @@ INSERT INTO player (player_id, name, position, nationality, team_id, shirt_numbe
 (475, 'Mattia Zaccagni', 'Forward', 'Italy', 18, 20),
 (476, 'Diego González', 'Forward', 'Paraguay', 18, 70);
 
-INSERT INTO player (player_id, name, position, nationality, team_id, shirt_number) VALUES
+INSERT INTO player (id, name, position, nationality, team_id, shirt_number) VALUES
 -- Guarda-Redes
 (477, 'Justin Bijlow', 'Goalkeeper', 'Netherlands', 19, 1),
 (478, 'Timon Wellenreuther', 'Goalkeeper', 'Germany', 19, 22),
@@ -717,7 +717,7 @@ INSERT INTO player (player_id, name, position, nationality, team_id, shirt_numbe
 (501, 'Leo Sauer', 'Forward', 'Slovakia', 19, 25),
 (502, 'Santiago Giménez', 'Forward', 'Mexico', 19, 29);
 
-INSERT INTO player (player_id, name, position, nationality, team_id, shirt_number) VALUES
+INSERT INTO player (id, name, position, nationality, team_id, shirt_number) VALUES
 -- Guarda-Redes
 (503, 'Joe Hart', 'Goalkeeper', 'England', 20, 1),
 (504, 'Scott Bain', 'Goalkeeper', 'Scotland', 20, 29),
@@ -756,7 +756,7 @@ INSERT INTO player (player_id, name, position, nationality, team_id, shirt_numbe
 (531, 'James Forrest', 'Forward', 'Scotland', 20, 49),
 (532, 'Mikey Johnston', 'Forward', 'Ireland', 20, 90); -- Saiu em Jan 2024 (Empréstimo)
 
-INSERT INTO player (player_id, name, position, nationality, team_id, shirt_number) VALUES
+INSERT INTO player (id, name, position, nationality, team_id, shirt_number) VALUES
 -- Guarda-Redes
 (533, 'Gregor Kobel', 'Goalkeeper', 'Switzerland', 21, 1),
 (534, 'Alexander Meyer', 'Goalkeeper', 'Germany', 21, 33),
@@ -795,7 +795,7 @@ INSERT INTO player (player_id, name, position, nationality, team_id, shirt_numbe
 (561, 'Karim Adeyemi', 'Forward', 'Germany', 21, 27),
 (562, 'Jamie Bynoe-Gittens', 'Forward', 'England', 21, 43);
 
-INSERT INTO player (player_id, name, position, nationality, team_id, shirt_number) VALUES
+INSERT INTO player (id, name, position, nationality, team_id, shirt_number) VALUES
 -- Guarda-Redes
 (563, 'Keylor Navas', 'Goalkeeper', 'Costa Rica', 22, 1),
 (564, 'Alexandre Letellier', 'Goalkeeper', 'France', 22, 30),
@@ -834,7 +834,7 @@ INSERT INTO player (player_id, name, position, nationality, team_id, shirt_numbe
 (591, 'Bradley Barcola', 'Forward', 'France', 22, 29),
 (592, 'Hugo Ekitiké', 'Forward', 'France', 22, 44); -- Saiu em Jan 2024
 
-INSERT INTO player (player_id, name, position, nationality, team_id, shirt_number) VALUES
+INSERT INTO player (id, name, position, nationality, team_id, shirt_number) VALUES
 -- Guarda-Redes
 (593, 'Mike Maignan', 'Goalkeeper', 'France', 23, 16),
 (594, 'Marco Sportiello', 'Goalkeeper', 'Italy', 23, 57),
@@ -874,7 +874,7 @@ INSERT INTO player (player_id, name, position, nationality, team_id, shirt_numbe
 (622, 'Samuel Chukwueze', 'Forward', 'Nigeria', 23, 21),
 (623, 'Chaka Traorè', 'Forward', 'Ivory Coast', 23, 70); -- Saiu em Jan 2024
 
-INSERT INTO player (player_id, name, position, nationality, team_id, shirt_number) VALUES
+INSERT INTO player (id, name, position, nationality, team_id, shirt_number) VALUES
 -- Guarda-Redes
 (624, 'Martin Dúbravka', 'Goalkeeper', 'Slovakia', 24, 1),
 (625, 'Loris Karius', 'Goalkeeper', 'Germany', 24, 18),
@@ -914,7 +914,7 @@ INSERT INTO player (player_id, name, position, nationality, team_id, shirt_numbe
 (653, 'Alexander Isak', 'Forward', 'Sweden', 24, 14),
 (654, 'Harvey Barnes', 'Forward', 'England', 24, 15);
 
-INSERT INTO player (player_id, name, position, nationality, team_id, shirt_number) VALUES
+INSERT INTO player (id, name, position, nationality, team_id, shirt_number) VALUES
 -- Guarda-Redes
 (655, 'Stefan Ortega', 'Goalkeeper', 'Germany', 25, 18),
 (656, 'Ederson', 'Goalkeeper', 'Brazil', 25, 31),
@@ -946,7 +946,7 @@ INSERT INTO player (player_id, name, position, nationality, team_id, shirt_numbe
 (676, 'Julián Álvarez', 'Forward', 'Argentina', 25, 19),
 (677, 'Oscar Bobb', 'Forward', 'Norway', 25, 52);
 
-INSERT INTO player (player_id, name, position, nationality, team_id, shirt_number) VALUES
+INSERT INTO player (id, name, position, nationality, team_id, shirt_number) VALUES
 -- Guarda-Redes
 (678, 'Péter Gulácsi', 'Goalkeeper', 'Hungary', 26, 1),
 (679, 'Janis Blaswich', 'Goalkeeper', 'Germany', 26, 21),
@@ -981,7 +981,7 @@ INSERT INTO player (player_id, name, position, nationality, team_id, shirt_numbe
 (702, 'Loïs Openda', 'Forward', 'Belgium', 26, 17),
 (703, 'Benjamin Šeško', 'Forward', 'Slovenia', 26, 30);
 
-INSERT INTO player (player_id, name, position, nationality, team_id, shirt_number) VALUES
+INSERT INTO player (id, name, position, nationality, team_id, shirt_number) VALUES
 -- Guarda-Redes
 (704, 'Anthony Racioppi', 'Goalkeeper', 'Switzerland', 27, 1),
 (705, 'David von Ballmoos', 'Goalkeeper', 'Switzerland', 27, 26),
@@ -1014,7 +1014,7 @@ INSERT INTO player (player_id, name, position, nationality, team_id, shirt_numbe
 (726, 'Silvere Ganvoula', 'Forward', 'Congo', 27, 35),
 (727, 'Joël Monteiro', 'Forward', 'Switzerland', 27, 77);
 
-INSERT INTO player (player_id, name, position, nationality, team_id, shirt_number) VALUES
+INSERT INTO player (id, name, position, nationality, team_id, shirt_number) VALUES
 -- Guarda-Redes
 (728, 'Zoran Popović', 'Goalkeeper', 'Serbia', 28, 1),
 (729, 'Omri Glazer', 'Goalkeeper', 'Israel', 28, 18),
@@ -1053,7 +1053,7 @@ INSERT INTO player (player_id, name, position, nationality, team_id, shirt_numbe
 (756, 'Uroš Kabić', 'Forward', 'Serbia', 28, 70), -- Saiu em Jan 2024
 (757, 'Stefan Mitrović', 'Forward', 'Serbia', 28, 80); -- Saiu em Fev 2024
 
-INSERT INTO player (player_id, name, position, nationality, team_id, shirt_number) VALUES
+INSERT INTO player (id, name, position, nationality, team_id, shirt_number) VALUES
 -- Guarda-Redes
 (758, 'Marc-André ter Stegen', 'Goalkeeper', 'Germany', 29, 1),
 (759, 'Iñaki Peña', 'Goalkeeper', 'Spain', 29, 13),
@@ -1089,7 +1089,7 @@ INSERT INTO player (player_id, name, position, nationality, team_id, shirt_numbe
 (783, 'Lamine Yamal', 'Forward', 'Spain', 29, 27),
 (784, 'Marc Guiu', 'Forward', 'Spain', 29, 38);
 
-INSERT INTO player (player_id, name, position, nationality, team_id, shirt_number) VALUES
+INSERT INTO player (id, name, position, nationality, team_id, shirt_number) VALUES
 -- Guarda-Redes
 (785, 'Diogo Costa', 'Goalkeeper', 'Portugal', 30, 99),
 (786, 'Cláudio Ramos', 'Goalkeeper', 'Portugal', 30, 14),
@@ -1129,7 +1129,7 @@ INSERT INTO player (player_id, name, position, nationality, team_id, shirt_numbe
 (814, 'Evanilson', 'Forward', 'Brazil', 30, 30),
 (815, 'Gonçalo Borges', 'Forward', 'Portugal', 30, 70);
 
-INSERT INTO player (player_id, name, position, nationality, team_id, shirt_number) VALUES
+INSERT INTO player (id, name, position, nationality, team_id, shirt_number) VALUES
 -- Guarda-Redes
 (816, 'Artur Rudko', 'Goalkeeper', 'Ukraine', 31, 1),
 (817, 'Dmytro Riznyk', 'Goalkeeper', 'Ukraine', 31, 31),
@@ -1166,7 +1166,7 @@ INSERT INTO player (player_id, name, position, nationality, team_id, shirt_numbe
 (842, 'Newerton', 'Forward', 'Brazil', 31, 39),
 (843, 'Oleksiy Kashchuk', 'Forward', 'Ukraine', 31, 90);
 
-INSERT INTO player (player_id, name, position, nationality, team_id, shirt_number) VALUES
+INSERT INTO player (id, name, position, nationality, team_id, shirt_number) VALUES
 -- Guarda-Redes
 (844, 'Jean Butez', 'Goalkeeper', 'France', 32, 1),
 (845, 'Senne Lammens', 'Goalkeeper', 'Belgium', 32, 91),
