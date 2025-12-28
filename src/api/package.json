@@ -1,0 +1,84 @@
+{
+  "name": "api",
+  "version": "0.0.1",
+  "description": "API para gestão e visualização da fase de grupos da liga dos campeões",
+  "keywords": [
+    "loopback-application",
+    "loopback"
+  ],
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "engines": {
+    "node": "20 || 22 || 24"
+  },
+  "scripts": {
+    "build": "lb-tsc",
+    "build:watch": "lb-tsc --watch",
+    "lint": "npm run eslint && npm run prettier:check",
+    "lint:fix": "npm run eslint:fix && npm run prettier:fix",
+    "prettier:cli": "lb-prettier \"**/*.ts\" \"**/*.js\"",
+    "prettier:check": "npm run prettier:cli -- -l",
+    "prettier:fix": "npm run prettier:cli -- --write",
+    "eslint": "lb-eslint --report-unused-disable-directives .",
+    "eslint:fix": "npm run eslint -- --fix",
+    "pretest": "npm run rebuild",
+    "test": "lb-mocha --allow-console-logs \"dist/__tests__\"",
+    "posttest": "npm run lint",
+    "test:dev": "lb-mocha --allow-console-logs dist/__tests__/**/*.js && npm run posttest",
+    "docker:build": "docker build -t api .",
+    "docker:run": "docker run -p 3000:3000 -d api",
+    "premigrate": "npm run build",
+    "migrate": "node ./dist/migrate",
+    "preopenapi-spec": "npm run build",
+    "openapi-spec": "node ./dist/openapi-spec",
+    "prestart": "npm run rebuild",
+    "start": "node -r source-map-support/register .",
+    "clean": "lb-clean dist *.tsbuildinfo .eslintcache",
+    "rebuild": "npm run clean && npm run build"
+  },
+   "repository": {
+    "type": "git",
+    "url": "https://github.com/inf25dw1g05/Football_Champions_League_M3"
+  },
+  "author": "inf25dw1g05 (Grupo 05)",
+  "contributors": [
+    {
+      "name": "Rodrigo Esteves",
+      "email": "rodrigo.m.esteves06@gmail.com"
+    },
+    {
+      "name": "Ricardo Dias",
+      "email": "ricardosantosdias06@gmail.com"
+    },
+    {
+      "name": "Romeu Pinto",
+      "email": "a048074@umaia.pt"
+    }
+  ], 
+   "license": "CC0-1.0", 
+   "files": [
+    "README.md",
+    "dist",
+    "src",
+    "!*/__tests__"
+  ],
+  "dependencies": {
+    "@loopback/boot": "^8.0.7",
+    "@loopback/core": "^7.0.6",
+    "@loopback/repository": "^8.0.6",
+    "@loopback/rest": "^15.0.7",
+    "@loopback/rest-explorer": "^8.0.7",
+    "@loopback/service-proxy": "^8.0.6",
+    "loopback-connector-mysql": "^7.1.6",
+    "tslib": "^2.0.0"
+  },
+  "devDependencies": {
+    "@loopback/build": "^12.0.6",
+    "@loopback/eslint-config": "^16.0.1",
+    "@loopback/testlab": "^8.0.6",
+    "@types/node": "^16.18.126",
+    "eslint": "^8.57.1",
+    "source-map-support": "^0.5.21",
+    "typescript": "~5.2.2"
+  }
+}
