@@ -1,0 +1,43 @@
+version: '3.8'
+name: champions-league-M3
+services:
+
+  db:
+    build: ./mysql
+    container_name: Champions_League-db-m3
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: '0000'
+      MYSQL_DATABASE: 'champions_league'
+    volumes:
+      - mysql-data:/var/lib/mysql
+    ports:
+      - '3306:3306'
+  api:
+    container_name: Champions_League-api-m3
+    restart: always
+    build: ./api
+    ports:
+      - '3000:3000'
+    environment:
+      DB_HOST: 'db'
+      DB_USER: 'root'
+      DB_PASSWORD: '0000'
+      DB_NAME: 'champions_league'
+    depends_on:
+      - db
+    
+
+  backoffice:
+    container_name: Champions_League-backoffice-m3
+    restart: always
+    build: ./backoffice
+    environment:
+      - PORT=3006
+      - HOST=0.0.0.0
+    ports:
+      - '3006:3006'
+    depends_on:
+      - api
+volumes:
+  mysql-data:

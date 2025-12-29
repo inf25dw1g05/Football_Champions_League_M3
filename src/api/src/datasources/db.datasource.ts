@@ -3,14 +3,15 @@ import {juggler} from '@loopback/repository';
 
 const config = {
   name: 'db',
+  charset: 'utf8mb4',
   connector: 'mysql',
   url: '',
-  host: 'localhost',
+  host: process.env.DB_HOST || 'db', 
   port: 3306,
-  user: 'root',
-  password: '0000',
-  database: 'champions_league'
-};
+  user: process.env.DB_USER || 'root',
+  password: process.env.DB_PASSWORD || '0000',
+  database: process.env.DB_NAME || 'champions_league',
+};     
 
 // Observe application's life cycle to disconnect the datasource when
 // application is stopped. This allows the application to be shut down

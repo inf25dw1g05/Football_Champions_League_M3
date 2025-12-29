@@ -4,7 +4,13 @@ import {Stats} from './stats.model';
 import {MatchEvent} from './match-event.model';
 import {Match} from './match.model';
 
-@model()
+@model({
+  settings: {
+    mysql: {
+      table: 'player'
+    }
+  }
+})
 export class Player extends Entity {
   @property({
     type: 'number',
