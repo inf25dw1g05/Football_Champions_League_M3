@@ -1,25 +1,30 @@
-import { DataTable, List,  Edit, SimpleForm, TextInput } from 'react-admin';
+import { List, Edit, SimpleForm, TextInput, Datagrid, TextField,useRecordContext} from 'react-admin';
 
-export const TeamList = () => (
-    <List>
-        <DataTable>
-            <DataTable.Col source="id" />
-            <DataTable.Col source="name" />
-            <DataTable.Col source="country" />
-            <DataTable.Col source="coach" />
-            <DataTable.Col source="group_name" />
-        </DataTable>
+const PostTitle = () => {
+const record = useRecordContext();
+return record ? (<span>Team:  {`${record.name}`}</span>):null;
+}
+
+export const TeamList = (props) => (
+    <List {...props}>
+        <Datagrid rowClick="edit">
+            <TextField source="id" />
+            <TextField source="name" />
+            <TextField source="country" />
+            <TextField source="coach" />
+            <TextField source="group_name" />
+        </Datagrid>
     </List>
 );
 
-export const TeamEdit = () => (
-    <Edit>
+export const TeamEdit = (props) => (
+    <Edit title={<PostTitle />} {...props}>
         <SimpleForm>
-            <TextInput source="id" />
-            <TextInput source="name" />
-            <TextInput source="country" />
-            <TextInput source="coach" />
-            <TextInput source="group_name" />
+            <TextInput source="id" disabled/>
+            <TextInput source="name" label="Nome"/>
+            <TextInput source="country" label="País"/>
+            <TextInput source="coach" label="Treinador"/>
+            <TextInput source="group_name" label="Grupo"/>
         </SimpleForm>
     </Edit>
 );
