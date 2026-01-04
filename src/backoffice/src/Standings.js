@@ -3,94 +3,97 @@ import {
     Datagrid,
     TextField,
     NumberField,
-    TextInput,
+    SelectInput,
     useRecordContext,
 } from 'react-admin';
-import { Box, Typography } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 
-// Filtros
 const standingsFilters = [
-    <TextInput source="group_name" label="Grupo" alwaysOn />
+    <SelectInput 
+        source="group_name" 
+        label="Grupo" 
+        alwaysOn 
+        choices={[
+            { id: 'A', name: 'Grupo A' },
+            { id: 'B', name: 'Grupo B' },
+            { id: 'C', name: 'Grupo C' },
+            { id: 'D', name: 'Grupo D' },
+            { id: 'E', name: 'Grupo E' },
+            { id: 'F', name: 'Grupo F' },
+            { id: 'G', name: 'Grupo G' },
+            { id: 'H', name: 'Grupo H' },
+        ]}
+    />
 ];
 
-
-// Componente para pontos
 const PointsField = () => {
     const record = useRecordContext();
     if (!record) return null;
 
     return (
-        <Typography 
-            variant="h6" 
-            sx={{ 
-                color: 'white'
-            }}
-        >
+        <span style={{ fontWeight: 'bold', color: '#1976d2' }}>
             {record.points ?? 0}
-        </Typography>
+        </span>
     );
 };
 
-// Componente para diferença de golos
 const GoalDifferenceField = () => {
     const record = useRecordContext();
     if (!record) return null;
 
     const diff = record.goal_diff || 0;
-    const color = diff > 0 ? '#2e7d32' : diff < 0 ? '#d32f2f' : '#666';
+    
+    let color = 'inherit';
+    if (diff > 0) color = 'green';
+    if (diff < 0) color = 'red';
 
     return (
-        <Typography 
-            sx={{ 
-                color,
-                fontWeight: 'bold'
-            }}
-        >
+        <span style={{ color: color, fontWeight: 'bold' }}>
             {diff > 0 ? '+' : ''}{diff}
-        </Typography>
+        </span>
     );
 };
 
-// LISTA DE CLASSIFICAÇÃO
-export const StandingsList = (props) => (
-    <List
-        {...props}
-        filters={standingsFilters}
-        sort={{ field: 'points', order: 'DESC' }}
-        perPage={50}
-        pagination={false}
-    >
-        <Datagrid
-            bulkActionButtons={false}
-            sx={{
-                '& .RaDatagrid-headerCell': {
-                    fontWeight: 'bold',
-                    backgroundColor: '#1976d2',
-                    color: 'white'
-                },
-                '& .RaDatagrid-rowCell': {
-                    fontSize: '0.95rem'
-                }
-            }}
+export const StandingsList = (props) => {
+    const theme = useTheme();
+
+    return (
+        <List
+            {...props}
+            filters={standingsFilters}
+            sort={{ field: 'points', order: 'DESC' }}
+            perPage={50}
+            pagination={false}
         >
-            <TextField 
-                source="team_name" 
-                label="Equipa" 
-                sx={{ fontWeight: 'bold' }} 
-            />
-            
-            <TextField source="group_name" label="Grupo" />
-            
-            <PointsField label="Pts" />
-            
-            <NumberField source="played" label="J" />
-            <NumberField source="win" label="V" />
-            <NumberField source="draw" label="E" />
-            <NumberField source="loss" label="D" />
-            
-            <NumberField source="goals_for" label="GM" />
-            <NumberField source="goals_against" label="GS" />
-            <GoalDifferenceField label="DG" />
-        </Datagrid>
-    </List>
-);
+            <Datagrid
+                bulkActionButtons={false}
+                sx={{
+                    '& .RaDatagrid-headerCell': {
+                        fontWeight: 'bold',
+                        backgroundColor: theme.palette.mode === 'dark' ? '#424242' : '#1976d2',
+                        color: 'white'
+                    }
+                }}
+            >
+                <TextField 
+                    source="team_name" 
+                    label="Equipa" 
+                    sx={{ fontWeight: 'bold' }} 
+                />
+                
+                <TextField source="group_name" label="Grupo" />
+                
+                <PointsField label="Pts" />
+                
+                <NumberField source="played" label="J" />
+                <NumberField source="win" label="V" />
+                <NumberField source="draw" label="E" />
+                <NumberField source="loss" label="D" />
+                
+                <NumberField source="goals_for" label="GM" />
+                <NumberField source="goals_against" label="GS" />
+                <GoalDifferenceField label="DG" />
+            </Datagrid>
+        </List>
+    );
+};

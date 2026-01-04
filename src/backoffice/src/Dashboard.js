@@ -56,10 +56,9 @@ export const Dashboard = () => {
     return (
         <Box sx={{ p: 3 }}>
             <Typography variant="h4" gutterBottom sx={{ mb: 4, fontWeight: 'bold' }}>
-                🏆 Champions League - Dashboard
+                Champions League - Visão Geral
             </Typography>
 
-            {/* Cards de Estatísticas */}
             <Grid container spacing={3} sx={{ mb: 4 }}>
                 <Grid item xs={12} sm={6} md={3}>
                     <StatCard 
@@ -95,10 +94,9 @@ export const Dashboard = () => {
                 </Grid>
             </Grid>
 
-            {/* Top 3 Equipas */}
             <Card>
                 <CardHeader 
-                    title="🥇 Top 3 Equipas" 
+                    title="Equipas em Destaque (Top 3)" 
                     sx={{ 
                         background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                         color: 'white',

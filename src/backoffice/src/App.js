@@ -1,20 +1,18 @@
 import { Admin, Resource } from "react-admin";
 import dataProvider from "./dataProvider";
 import { Dashboard } from "./Dashboard";
-
-// Ícones
 import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
 import GroupIcon from "@mui/icons-material/Group";
 import SportsIcon from "@mui/icons-material/Sports";
 import StadiumIcon from '@mui/icons-material/Stadium';
 import LeaderboardIcon from "@mui/icons-material/Leaderboard";
-
-// Importar recursos
+import AssessmentIcon from '@mui/icons-material/Assessment';
 import { TeamList, TeamShow, TeamEdit } from "./Team";
 import { PlayerList, PlayerShow, PlayerEdit, PlayerCreate } from "./Player";
-import { MatchList, MatchShow } from "./Match";
-import { MatchEventList, MatchEventShow } from "./MatchEvent";
+import { MatchList, MatchShow, MatchCreate, MatchEdit } from "./Match";
+import { MatchEventList, MatchEventShow, MatchEventCreate, MatchEventEdit } from "./MatchEvent";
 import { StandingsList } from "./Standings";
+import { StatsList, StatsShow } from "./Stats";
 
 const App = () => (
     <Admin 
@@ -43,6 +41,8 @@ const App = () => (
             name="matches" 
             list={MatchList} 
             show={MatchShow}
+            create={MatchCreate} 
+            edit={MatchEdit}
             icon={StadiumIcon}
             options={{ label: "Jogos" }}
         />
@@ -50,6 +50,8 @@ const App = () => (
             name="match-events" 
             list={MatchEventList}
             show={MatchEventShow}
+            create={MatchEventCreate}
+            edit={MatchEventEdit}
             icon={SportsIcon}
             options={{ label: "Acontecimentos" }}
         />
@@ -59,6 +61,14 @@ const App = () => (
             icon={LeaderboardIcon}
             options={{ label: "Classificação" }}
         />
+        <Resource 
+            name="stats" 
+            list={StatsList} 
+            show={StatsShow}
+            icon={AssessmentIcon}
+            options={{ label: "Estatísticas" }} 
+        />
     </Admin>
 );
+
 export default App;

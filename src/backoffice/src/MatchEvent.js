@@ -4,139 +4,137 @@ import {
     TextField,
     ReferenceField,
     NumberField,
-    ShowButton,
+    Create,
+    Edit,
+    SimpleForm,
+    ReferenceInput,
+    SelectInput,
+    NumberInput,
     Show,
     SimpleShowLayout,
-    SelectInput,
-    Filter,
+    EditButton,
+    ShowButton,
+    TextInput,
+    useRecordContext
 } from 'react-admin';
-import { Chip, Box } from '@mui/material';
+import { Chip } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 
-// Filtros
-const EventFilter = (props) => (
-    <Filter {...props}>
-        <SelectInput 
-            source="event_type" 
-            label="Tipo de Evento" 
-            choices={[
-                { id: 'Goal', name: '⚽ Golo' },
-                { id: 'Assist', name: '🅰️ Assistência' },
-                { id: 'Yellow Card', name: '🟨 Cartão Amarelo' },
-                { id: 'Red Card', name: '🟥 Cartão Vermelho' },
-            ]}
-            alwaysOn
-        />
-    </Filter>
-);
-
-// Componente para tipo de evento
-const EventTypeField = ({ record }) => {
+const EventTypeField = () => {
+    const record = useRecordContext();
     if (!record) return null;
     
-    const eventTypes = {
-        'Goal': { label: '⚽ Golo', color: 'success' },
-        'Assist': { label: '🅰️ Assistência', color: 'info' },
-        'Yellow Card': { label: '🟨 Amarelo', color: 'warning' },
-        'Red Card': { label: '🟥 Vermelho', color: 'error' }
-    };
-    
-    const event = eventTypes[record.event_type] || { 
-        label: record.event_type, 
-        color: 'default' 
-    };
-    
-    return <Chip label={event.label} color={event.color} size="small" />;
-};
+    let chipColor = 'default';
+    let labelTexto = record.event_type;
 
-// Componente para o minuto
-const MinuteField = ({ record }) => {
-    if (!record) return null;
-    
+    if (record.event_type === 'Goal') {
+        chipColor = 'success';
+        labelTexto = 'Golo';
+    } else if (record.event_type === 'Assist') {
+        chipColor = 'primary';
+        labelTexto = 'Assistência';
+    } else if (record.event_type === 'Yellow Card') {
+        chipColor = 'warning';
+        labelTexto = 'Cartão Amarelo';
+    } else if (record.event_type === 'Red Card') {
+        chipColor = 'error';
+        labelTexto = 'Cartão Vermelho';
+    }
+
     return (
-        <Box
-            sx={{
-                display: 'inline-block',
-                backgroundColor: '#1976d2',
-                color: 'white',
-                padding: '4px 8px',
-                borderRadius: 1,
-                fontWeight: 'bold',
-                fontSize: '0.875rem'
-            }}
-        >
-            {record.minute}'
-        </Box>
+        <Chip 
+            label={labelTexto} 
+            color={chipColor} 
+            size="small" 
+            variant="outlined" 
+        />
     );
 };
 
-export const MatchEventList = (props) => (
-    <List
-        {...props}
-        filters={<EventFilter />}
-        sort={{ field: 'minute', order: 'ASC' }}
-        perPage={50}
-    >
-        <Datagrid
-            rowClick="show"
-            sx={{
-                '& .RaDatagrid-headerCell': {
-                    fontWeight: 'bold',
-                    backgroundColor: 'gray'
-                }
-            }}
-        >
-            <TextField source="id" label="ID" />
-            
-            <ReferenceField 
-                source="match_id" 
-                reference="matches" 
-                label="Jogo"
-                link="show"
+export const MatchEventList = (props) => {
+    const theme = useTheme();
+
+    return (
+        <List {...props}>
+            <Datagrid 
+                rowClick="show"
+                sx={{
+                    '& .RaDatagrid-headerCell': {
+                        backgroundColor: theme.palette.mode === 'dark' ? '#424242' : '#1976d2',
+                        color: 'white',
+                        fontWeight: 'bold'
+                    }
+                }}
             >
                 <TextField source="id" />
-            </ReferenceField>
-            
-            <MinuteField source="minute" label="Minuto" />
-            <EventTypeField source="event_type" label="Tipo" />
-            
-            <ReferenceField 
-                source="player_id" 
-                reference="players" 
-                label="Jogador"
-                link="show"
-            >
-                <TextField source="name" />
-            </ReferenceField>
-            
-            <ShowButton />
-        </Datagrid>
-    </List>
-);
+                <ReferenceField source="match_id" reference="matches" label="Jogo">
+                    <TextField source="id" />
+                </ReferenceField>
+                <NumberField source="minute" label="Minuto" />
+                <EventTypeField source="event_type" label="Evento" />
+                <ReferenceField source="player_id" reference="players" label="Jogador">
+                    <TextField source="name" />
+                </ReferenceField>
+                <EditButton />
+                <ShowButton />
+            </Datagrid>
+        </List>
+    );
+};
 
 export const MatchEventShow = (props) => (
     <Show {...props}>
         <SimpleShowLayout>
-            <TextField source="id" label="ID" />
-            <MinuteField source="minute" label="Minuto" />
-            <EventTypeField source="event_type" label="Tipo de Evento" />
-            
-            <ReferenceField 
-                source="player_id" 
-                reference="players" 
-                label="Jogador"
-                link="show"
-            >
-                <TextField source="name" />
-            </ReferenceField>
-            
-            <ReferenceField 
-                source="match_id" 
-                reference="matches" 
-                label="Jogo"
-                link="show"
-            >
+            <TextField source="id" />
+            <ReferenceField source="match_id" reference="matches">
                 <TextField source="id" />
+            </ReferenceField>
+            <NumberField source="minute" />
+            <EventTypeField source="event_type" />
+            <ReferenceField source="player_id" reference="players">
+                <TextField source="name" />
             </ReferenceField>
         </SimpleShowLayout>
     </Show>
+);
+
+export const MatchEventCreate = (props) => (
+    <Create {...props}>
+        <SimpleForm>
+            <ReferenceInput source="match_id" reference="matches">
+                <SelectInput optionText="id" />
+            </ReferenceInput>
+            <ReferenceInput source="player_id" reference="players">
+                <SelectInput optionText="name" />
+            </ReferenceInput>
+            <SelectInput source="event_type" choices={[
+                { id: 'Goal', name: 'Golo' },
+                { id: 'Assist', name: 'Assistência' },
+                { id: 'Yellow Card', name: 'Cartão Amarelo' },
+                { id: 'Red Card', name: 'Cartão Vermelho' },
+            ]} />
+            <NumberInput source="minute" />
+        </SimpleForm>
+    </Create>
+);
+
+export const MatchEventEdit = (props) => (
+    <Edit {...props}>
+        <SimpleForm>
+            <TextInput source="id" disabled />
+            <ReferenceInput source="match_id" reference="matches">
+                <SelectInput optionText="id" />
+            </ReferenceInput>
+            <ReferenceInput source="player_id" reference="players">
+                <SelectInput optionText="name" />
+            </ReferenceInput>
+            <SelectInput source="event_type" choices={[
+                { id: 'Goal', name: 'Golo' },
+                { id: 'Assist', name: 'Assistência' },
+                { id: 'Yellow Card', name: 'Cartão Amarelo' },
+                { id: 'Red Card', name: 'Cartão Vermelho' },
+            ]} />
+            <NumberInput source="minute" />
+        </SimpleForm>
+    </Edit>
 );

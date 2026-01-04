@@ -11,9 +11,11 @@ import {
     ReferenceManyField,
     NumberField,
     ShowButton,
-    EditButton
+    EditButton,
+    SelectInput
 } from 'react-admin';
 import { Chip } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 
 const PostTitle = () => {
     const record = useRecordContext();
@@ -32,27 +34,32 @@ const GroupField = () => {
     );
 };
 
-export const TeamList = (props) => (
-    <List {...props}>
-        <Datagrid 
-            rowClick="show"
-            sx={{
-                '& .RaDatagrid-headerCell': {
-                    fontWeight: 'bold',
-                    backgroundColor: 'gray'
-                }
-            }}
-        >
-            <TextField source="id" />
-            <TextField source="name" label="Nome" />
-            <TextField source="country" label="País" />
-            <TextField source="coach" label="Treinador" />
-            <GroupField label="Grupo" />
-            <ShowButton />
-            <EditButton />
-        </Datagrid>
-    </List>
-);
+export const TeamList = (props) => {
+    const theme = useTheme();
+
+    return (
+        <List {...props}>
+            <Datagrid 
+                rowClick="show"
+                sx={{
+                    '& .RaDatagrid-headerCell': {
+                        fontWeight: 'bold',
+                        backgroundColor: theme.palette.mode === 'dark' ? '#424242' : '#1976d2',
+                        color: 'white'
+                    }
+                }}
+            >
+                <TextField source="id" />
+                <TextField source="name" label="Nome" />
+                <TextField source="country" label="País" />
+                <TextField source="coach" label="Treinador" />
+                <GroupField label="Grupo" />
+                <ShowButton />
+                <EditButton />
+            </Datagrid>
+        </List>
+    );
+};
 
 export const TeamShow = (props) => (
     <Show {...props}>
@@ -63,7 +70,6 @@ export const TeamShow = (props) => (
             <TextField source="coach" label="Treinador" />
             <GroupField label="Grupo" />
             
-            {/* Lista de jogadores desta equipa */}
             <ReferenceManyField 
                 label="Jogadores da Equipa" 
                 reference="players" 
@@ -88,7 +94,16 @@ export const TeamEdit = (props) => (
             <TextInput source="name" label="Nome" />
             <TextInput source="country" label="País" />
             <TextInput source="coach" label="Treinador" />
-            <TextInput source="group_name" label="Grupo" />
+            <SelectInput source="group_name" label="Grupo" choices={[
+                { id: 'A', name: 'Grupo A' },
+                { id: 'B', name: 'Grupo B' },
+                { id: 'C', name: 'Grupo C' },
+                { id: 'D', name: 'Grupo D' },
+                { id: 'E', name: 'Grupo E' },
+                { id: 'F', name: 'Grupo F' },
+                { id: 'G', name: 'Grupo G' },
+                { id: 'H', name: 'Grupo H' },
+            ]} />
         </SimpleForm>
     </Edit>
 );
