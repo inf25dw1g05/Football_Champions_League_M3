@@ -20,9 +20,9 @@ const EventFilter = (props) => (
             label="Tipo de Evento" 
             choices={[
                 { id: 'Goal', name: '⚽ Golo' },
+                { id: 'Assist', name: '🅰️ Assistência' },
                 { id: 'Yellow Card', name: '🟨 Cartão Amarelo' },
                 { id: 'Red Card', name: '🟥 Cartão Vermelho' },
-                { id: 'Substitution', name: '🔄 Substituição' },
             ]}
             alwaysOn
         />
@@ -35,9 +35,9 @@ const EventTypeField = ({ record }) => {
     
     const eventTypes = {
         'Goal': { label: '⚽ Golo', color: 'success' },
+        'Assist': { label: '🅰️ Assistência', color: 'info' },
         'Yellow Card': { label: '🟨 Amarelo', color: 'warning' },
-        'Red Card': { label: '🟥 Vermelho', color: 'error' },
-        'Substitution': { label: '🔄 Substituição', color: 'info' }
+        'Red Card': { label: '🟥 Vermelho', color: 'error' }
     };
     
     const event = eventTypes[record.event_type] || { 
@@ -85,7 +85,7 @@ export const MatchEventList = (props) => (
                 }
             }}
         >
-            <TextField source="id" />
+            <TextField source="id" label="ID" />
             
             <ReferenceField 
                 source="match_id" 
