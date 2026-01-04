@@ -52,8 +52,9 @@ const GoalDifferenceField = () => {
 };
 
 // LISTA DE CLASSIFICAÇÃO
-export const StandingsList = () => (
+export const StandingsList = (props) => (
     <List
+        {...props}
         filters={standingsFilters}
         sort={{ field: 'points', order: 'DESC' }}
         perPage={50}

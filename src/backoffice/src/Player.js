@@ -39,15 +39,15 @@ const PlayerFilter = (props) => (
     </Filter>
 );
 
-// Componente visual para posição
-const PositionField = ({ record }) => {
+const PositionField = () => {
+    const record = useRecordContext();
     if (!record || !record.position) return null;
     
     const positions = {
-        'Goalkeeper': { label: 'GR', color: 'warning' },
-        'Defender': { label: 'DEF', color: 'info' },
-        'Midfielder': { label: 'MED', color: 'success' },
-        'Forward': { label: 'AV', color: 'error' }
+        'Goalkeeper': { label: 'GR' },
+        'Defender': { label: 'DEF' },
+        'Midfielder': { label: 'MED' },
+        'Forward': { label: 'AV' }
     };
     
     const pos = positions[record.position] || { label: record.position, color: 'default' };
@@ -68,7 +68,7 @@ export const PlayerList = (props) => (
         >
             <TextField source="id" />
             <TextField source="name" label="Nome" />
-            <PositionField source="position" label="Posição" />
+            <PositionField label="Posição" />
             <TextField source="nationality" label="Nacionalidade" />
             <NumberField source="shirt_number" label="Nº Camisola" />
             <ReferenceField source="team_id" reference="teams" label="Equipa" link="show">
@@ -85,7 +85,7 @@ export const PlayerShow = (props) => (
         <SimpleShowLayout>
             <TextField source="id" label="ID" />
             <TextField source="name" label="Nome" />
-            <PositionField source="position" label="Posição" />
+            <PositionField label="Posição" />
             <TextField source="nationality" label="Nacionalidade" />
             <NumberField source="shirt_number" label="Número da Camisola" />
             

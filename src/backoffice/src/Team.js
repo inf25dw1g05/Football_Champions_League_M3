@@ -20,8 +20,8 @@ const PostTitle = () => {
     return record ? (<span>Team: {`${record.name}`}</span>) : null;
 }
 
-// Componente visual para o grupo
-const GroupField = ({ record }) => {
+const GroupField = () => {
+    const record = useRecordContext();
     if (!record || !record.group_name) return null;
     return (
         <Chip 
@@ -47,7 +47,7 @@ export const TeamList = (props) => (
             <TextField source="name" label="Nome" />
             <TextField source="country" label="País" />
             <TextField source="coach" label="Treinador" />
-            <GroupField source="group_name" label="Grupo" />
+            <GroupField label="Grupo" />
             <ShowButton />
             <EditButton />
         </Datagrid>
@@ -61,7 +61,7 @@ export const TeamShow = (props) => (
             <TextField source="name" label="Nome" />
             <TextField source="country" label="País" />
             <TextField source="coach" label="Treinador" />
-            <GroupField source="group_name" label="Grupo" />
+            <GroupField label="Grupo" />
             
             {/* Lista de jogadores desta equipa */}
             <ReferenceManyField 
