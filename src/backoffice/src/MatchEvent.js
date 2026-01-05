@@ -15,7 +15,8 @@ import {
     EditButton,
     ShowButton,
     TextInput,
-    useRecordContext
+    useRecordContext,
+    Filter
 } from 'react-admin';
 import { Chip } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
@@ -51,11 +52,26 @@ const EventTypeField = () => {
     );
 };
 
+const MatchEventFilter = (props) => (
+    <Filter {...props}>
+        <ReferenceInput label="Jogo" source="match_id" reference="matches" alwaysOn>
+            <SelectInput optionText="id" />
+        </ReferenceInput>
+
+        <SelectInput source="event_type" label="Tipo de Evento" choices={[
+            { id: 'Goal', name: 'Golo' },
+            { id: 'Assist', name: 'Assistência' },
+            { id: 'Yellow Card', name: 'Cartão Amarelo' },
+            { id: 'Red Card', name: 'Cartão Vermelho' },
+        ]} />
+    </Filter>
+);
+
 export const MatchEventList = (props) => {
     const theme = useTheme();
 
     return (
-        <List {...props}>
+        <List filters={<MatchEventFilter />} {...props}>
             <Datagrid 
                 rowClick="show"
                 sx={{

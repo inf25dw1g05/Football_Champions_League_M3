@@ -1,0 +1,3839 @@
+openapi: 3.0.0
+info:
+  title: api
+  version: 0.0.1
+  description: API para gestão e visualização da fase de grupos da liga dos campeões
+  contact:
+    name: inf25dw1g05
+    url: Grupo 05
+paths:
+  /match-events/count:
+    get:
+      x-controller-name: MatchEventController
+      x-operation-name: count
+      tags:
+        - MatchEventController
+      responses:
+        '200':
+          description: MatchEvent model count
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/loopback.Count'
+      parameters:
+        - name: where
+          in: query
+          content:
+            application/json:
+              schema:
+                type: object
+                title: MatchEvent.WhereFilter
+                additionalProperties: true
+                x-typescript-type: '@loopback/repository#Where<MatchEvent>'
+      operationId: MatchEventController.count
+  /match-events/{id}/match:
+    get:
+      x-controller-name: MatchEventMatchController
+      x-operation-name: getMatch
+      tags:
+        - MatchEventMatchController
+      responses:
+        '200':
+          description: Match belonging to MatchEvent
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Match'
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+      operationId: MatchEventMatchController.getMatch
+  /match-events/{id}/player:
+    get:
+      x-controller-name: MatchEventPlayerController
+      x-operation-name: getPlayer
+      tags:
+        - MatchEventPlayerController
+      responses:
+        '200':
+          description: Player belonging to MatchEvent
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Player'
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+      operationId: MatchEventPlayerController.getPlayer
+  /match-events/{id}:
+    put:
+      x-controller-name: MatchEventController
+      x-operation-name: replaceById
+      tags:
+        - MatchEventController
+      responses:
+        '204':
+          description: No Content
+          content:
+            application/json:
+              schema:
+                description: MatchEvent PUT success
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MatchEvent'
+        x-parameter-index: 1
+      operationId: MatchEventController.replaceById
+    patch:
+      x-controller-name: MatchEventController
+      x-operation-name: updateById
+      tags:
+        - MatchEventController
+      responses:
+        '204':
+          description: No Content
+          content:
+            application/json:
+              schema:
+                description: MatchEvent PATCH success
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MatchEventPartial'
+        x-parameter-index: 1
+      operationId: MatchEventController.updateById
+    get:
+      x-controller-name: MatchEventController
+      x-operation-name: findById
+      tags:
+        - MatchEventController
+      responses:
+        '200':
+          description: MatchEvent model instance
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MatchEventWithRelations'
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+        - name: filter
+          in: query
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MatchEvent.Filter'
+      operationId: MatchEventController.findById
+    delete:
+      x-controller-name: MatchEventController
+      x-operation-name: deleteById
+      tags:
+        - MatchEventController
+      responses:
+        '204':
+          description: No Content
+          content:
+            application/json:
+              schema:
+                description: MatchEvent DELETE success
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+      operationId: MatchEventController.deleteById
+  /match-events:
+    post:
+      x-controller-name: MatchEventController
+      x-operation-name: create
+      tags:
+        - MatchEventController
+      responses:
+        '200':
+          description: MatchEvent model instance
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MatchEvent'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewMatchEvent'
+      operationId: MatchEventController.create
+    patch:
+      x-controller-name: MatchEventController
+      x-operation-name: updateAll
+      tags:
+        - MatchEventController
+      responses:
+        '200':
+          description: MatchEvent PATCH success count
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/loopback.Count'
+      parameters:
+        - name: where
+          in: query
+          content:
+            application/json:
+              schema:
+                type: object
+                title: MatchEvent.WhereFilter
+                additionalProperties: true
+                x-typescript-type: '@loopback/repository#Where<MatchEvent>'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MatchEventPartial'
+      operationId: MatchEventController.updateAll
+    get:
+      x-controller-name: MatchEventController
+      x-operation-name: find
+      tags:
+        - MatchEventController
+      responses:
+        '200':
+          description: Array of MatchEvent model instances
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MatchEventWithRelations'
+      parameters:
+        - name: filter
+          in: query
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MatchEvent.Filter1'
+      operationId: MatchEventController.find
+  /matches/count:
+    get:
+      x-controller-name: MatchController
+      x-operation-name: count
+      tags:
+        - MatchController
+      responses:
+        '200':
+          description: Match model count
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/loopback.Count'
+      parameters:
+        - name: where
+          in: query
+          content:
+            application/json:
+              schema:
+                type: object
+                title: Match.WhereFilter
+                additionalProperties: true
+                x-typescript-type: '@loopback/repository#Where<Match>'
+      operationId: MatchController.count
+  /matches/{id}/match-events:
+    post:
+      x-controller-name: MatchMatchEventController
+      x-operation-name: create
+      tags:
+        - MatchMatchEventController
+      responses:
+        '200':
+          description: Match model instance
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MatchEvent'
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewMatchEventInMatch'
+        x-parameter-index: 1
+      operationId: MatchMatchEventController.create
+    patch:
+      x-controller-name: MatchMatchEventController
+      x-operation-name: patch
+      tags:
+        - MatchMatchEventController
+      responses:
+        '200':
+          description: Match.MatchEvent PATCH success count
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/loopback.Count'
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+        - name: where
+          in: query
+          content:
+            application/json:
+              schema:
+                type: object
+                title: MatchEvent.WhereFilter
+                additionalProperties: true
+                x-typescript-type: '@loopback/repository#Where<MatchEvent>'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MatchEventPartial'
+        x-parameter-index: 1
+      operationId: MatchMatchEventController.patch
+    get:
+      x-controller-name: MatchMatchEventController
+      x-operation-name: find
+      tags:
+        - MatchMatchEventController
+      responses:
+        '200':
+          description: Array of Match has many MatchEvent
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MatchEvent'
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+        - name: filter
+          in: query
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+      operationId: MatchMatchEventController.find
+    delete:
+      x-controller-name: MatchMatchEventController
+      x-operation-name: delete
+      tags:
+        - MatchMatchEventController
+      responses:
+        '200':
+          description: Match.MatchEvent DELETE success count
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/loopback.Count'
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+        - name: where
+          in: query
+          content:
+            application/json:
+              schema:
+                type: object
+                title: MatchEvent.WhereFilter
+                additionalProperties: true
+                x-typescript-type: '@loopback/repository#Where<MatchEvent>'
+      operationId: MatchMatchEventController.delete
+  /matches/{id}/players:
+    post:
+      x-controller-name: MatchPlayerController
+      x-operation-name: create
+      tags:
+        - MatchPlayerController
+      responses:
+        '200':
+          description: create a Player model instance
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Player'
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewPlayerInMatch'
+        x-parameter-index: 1
+      operationId: MatchPlayerController.create
+    patch:
+      x-controller-name: MatchPlayerController
+      x-operation-name: patch
+      tags:
+        - MatchPlayerController
+      responses:
+        '200':
+          description: Match.Player PATCH success count
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/loopback.Count'
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+        - name: where
+          in: query
+          content:
+            application/json:
+              schema:
+                type: object
+                title: Player.WhereFilter
+                additionalProperties: true
+                x-typescript-type: '@loopback/repository#Where<Player>'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PlayerPartial'
+        x-parameter-index: 1
+      operationId: MatchPlayerController.patch
+    get:
+      x-controller-name: MatchPlayerController
+      x-operation-name: find
+      tags:
+        - MatchPlayerController
+      responses:
+        '200':
+          description: Array of Match has many Player through MatchEvent
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Player'
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+        - name: filter
+          in: query
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+      operationId: MatchPlayerController.find
+    delete:
+      x-controller-name: MatchPlayerController
+      x-operation-name: delete
+      tags:
+        - MatchPlayerController
+      responses:
+        '200':
+          description: Match.Player DELETE success count
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/loopback.Count'
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+        - name: where
+          in: query
+          content:
+            application/json:
+              schema:
+                type: object
+                title: Player.WhereFilter
+                additionalProperties: true
+                x-typescript-type: '@loopback/repository#Where<Player>'
+      operationId: MatchPlayerController.delete
+  /matches/{id}/team:
+    get:
+      x-controller-name: MatchTeamController
+      x-operation-name: getTeam
+      tags:
+        - MatchTeamController
+      responses:
+        '200':
+          description: Team belonging to Match
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Team'
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+      operationId: MatchTeamController.getTeam
+  /matches/{id}:
+    put:
+      x-controller-name: MatchController
+      x-operation-name: replaceById
+      tags:
+        - MatchController
+      responses:
+        '204':
+          description: No Content
+          content:
+            application/json:
+              schema:
+                description: Match PUT success
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Match'
+        x-parameter-index: 1
+      operationId: MatchController.replaceById
+    patch:
+      x-controller-name: MatchController
+      x-operation-name: updateById
+      tags:
+        - MatchController
+      responses:
+        '204':
+          description: No Content
+          content:
+            application/json:
+              schema:
+                description: Match PATCH success
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MatchPartial'
+        x-parameter-index: 1
+      operationId: MatchController.updateById
+    get:
+      x-controller-name: MatchController
+      x-operation-name: findById
+      tags:
+        - MatchController
+      responses:
+        '200':
+          description: Match model instance
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MatchWithRelations'
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+        - name: filter
+          in: query
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Match.Filter'
+      operationId: MatchController.findById
+    delete:
+      x-controller-name: MatchController
+      x-operation-name: deleteById
+      tags:
+        - MatchController
+      responses:
+        '204':
+          description: No Content
+          content:
+            application/json:
+              schema:
+                description: Match DELETE success
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+      operationId: MatchController.deleteById
+  /matches:
+    post:
+      x-controller-name: MatchController
+      x-operation-name: create
+      tags:
+        - MatchController
+      responses:
+        '200':
+          description: Match model instance
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Match'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewMatch'
+      operationId: MatchController.create
+    patch:
+      x-controller-name: MatchController
+      x-operation-name: updateAll
+      tags:
+        - MatchController
+      responses:
+        '200':
+          description: Match PATCH success count
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/loopback.Count'
+      parameters:
+        - name: where
+          in: query
+          content:
+            application/json:
+              schema:
+                type: object
+                title: Match.WhereFilter
+                additionalProperties: true
+                x-typescript-type: '@loopback/repository#Where<Match>'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MatchPartial'
+      operationId: MatchController.updateAll
+    get:
+      x-controller-name: MatchController
+      x-operation-name: find
+      tags:
+        - MatchController
+      responses:
+        '200':
+          description: Array of Match model instances
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MatchWithRelations'
+      parameters:
+        - name: filter
+          in: query
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Match.Filter1'
+      operationId: MatchController.find
+  /ping:
+    get:
+      x-controller-name: PingController
+      x-operation-name: ping
+      tags:
+        - PingController
+      responses:
+        '200':
+          description: Ping Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PingResponse'
+      operationId: PingController.ping
+  /players/count:
+    get:
+      x-controller-name: PlayerController
+      x-operation-name: count
+      tags:
+        - PlayerController
+      responses:
+        '200':
+          description: Player model count
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/loopback.Count'
+      parameters:
+        - name: where
+          in: query
+          content:
+            application/json:
+              schema:
+                type: object
+                title: Player.WhereFilter
+                additionalProperties: true
+                x-typescript-type: '@loopback/repository#Where<Player>'
+      operationId: PlayerController.count
+  /players/{id}/match-events:
+    post:
+      x-controller-name: PlayerMatchEventController
+      x-operation-name: create
+      tags:
+        - PlayerMatchEventController
+      responses:
+        '200':
+          description: Player model instance
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MatchEvent'
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewMatchEventInPlayer'
+        x-parameter-index: 1
+      operationId: PlayerMatchEventController.create
+    patch:
+      x-controller-name: PlayerMatchEventController
+      x-operation-name: patch
+      tags:
+        - PlayerMatchEventController
+      responses:
+        '200':
+          description: Player.MatchEvent PATCH success count
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/loopback.Count'
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+        - name: where
+          in: query
+          content:
+            application/json:
+              schema:
+                type: object
+                title: MatchEvent.WhereFilter
+                additionalProperties: true
+                x-typescript-type: '@loopback/repository#Where<MatchEvent>'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MatchEventPartial'
+        x-parameter-index: 1
+      operationId: PlayerMatchEventController.patch
+    get:
+      x-controller-name: PlayerMatchEventController
+      x-operation-name: find
+      tags:
+        - PlayerMatchEventController
+      responses:
+        '200':
+          description: Array of Player has many MatchEvent
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MatchEvent'
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+        - name: filter
+          in: query
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+      operationId: PlayerMatchEventController.find
+    delete:
+      x-controller-name: PlayerMatchEventController
+      x-operation-name: delete
+      tags:
+        - PlayerMatchEventController
+      responses:
+        '200':
+          description: Player.MatchEvent DELETE success count
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/loopback.Count'
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+        - name: where
+          in: query
+          content:
+            application/json:
+              schema:
+                type: object
+                title: MatchEvent.WhereFilter
+                additionalProperties: true
+                x-typescript-type: '@loopback/repository#Where<MatchEvent>'
+      operationId: PlayerMatchEventController.delete
+  /players/{id}/matches:
+    post:
+      x-controller-name: PlayerMatchController
+      x-operation-name: create
+      tags:
+        - PlayerMatchController
+      responses:
+        '200':
+          description: create a Match model instance
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Match'
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewMatchInPlayer'
+        x-parameter-index: 1
+      operationId: PlayerMatchController.create
+    patch:
+      x-controller-name: PlayerMatchController
+      x-operation-name: patch
+      tags:
+        - PlayerMatchController
+      responses:
+        '200':
+          description: Player.Match PATCH success count
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/loopback.Count'
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+        - name: where
+          in: query
+          content:
+            application/json:
+              schema:
+                type: object
+                title: Match.WhereFilter
+                additionalProperties: true
+                x-typescript-type: '@loopback/repository#Where<Match>'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MatchPartial'
+        x-parameter-index: 1
+      operationId: PlayerMatchController.patch
+    get:
+      x-controller-name: PlayerMatchController
+      x-operation-name: find
+      tags:
+        - PlayerMatchController
+      responses:
+        '200':
+          description: Array of Player has many Match through MatchEvent
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Match'
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+        - name: filter
+          in: query
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+      operationId: PlayerMatchController.find
+    delete:
+      x-controller-name: PlayerMatchController
+      x-operation-name: delete
+      tags:
+        - PlayerMatchController
+      responses:
+        '200':
+          description: Player.Match DELETE success count
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/loopback.Count'
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+        - name: where
+          in: query
+          content:
+            application/json:
+              schema:
+                type: object
+                title: Match.WhereFilter
+                additionalProperties: true
+                x-typescript-type: '@loopback/repository#Where<Match>'
+      operationId: PlayerMatchController.delete
+  /players/{id}/stats:
+    post:
+      x-controller-name: PlayerStatsController
+      x-operation-name: create
+      tags:
+        - PlayerStatsController
+      responses:
+        '200':
+          description: Player model instance
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Stats'
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewStatsInPlayer'
+        x-parameter-index: 1
+      operationId: PlayerStatsController.create
+    patch:
+      x-controller-name: PlayerStatsController
+      x-operation-name: patch
+      tags:
+        - PlayerStatsController
+      responses:
+        '200':
+          description: Player.Stats PATCH success count
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/loopback.Count'
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+        - name: where
+          in: query
+          content:
+            application/json:
+              schema:
+                type: object
+                title: Stats.WhereFilter
+                additionalProperties: true
+                x-typescript-type: '@loopback/repository#Where<Stats>'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StatsPartial'
+        x-parameter-index: 1
+      operationId: PlayerStatsController.patch
+    get:
+      x-controller-name: PlayerStatsController
+      x-operation-name: get
+      tags:
+        - PlayerStatsController
+      responses:
+        '200':
+          description: Player has one Stats
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Stats'
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+        - name: filter
+          in: query
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+      operationId: PlayerStatsController.get
+    delete:
+      x-controller-name: PlayerStatsController
+      x-operation-name: delete
+      tags:
+        - PlayerStatsController
+      responses:
+        '200':
+          description: Player.Stats DELETE success count
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/loopback.Count'
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+        - name: where
+          in: query
+          content:
+            application/json:
+              schema:
+                type: object
+                title: Stats.WhereFilter
+                additionalProperties: true
+                x-typescript-type: '@loopback/repository#Where<Stats>'
+      operationId: PlayerStatsController.delete
+  /players/{id}/team:
+    get:
+      x-controller-name: PlayerTeamController
+      x-operation-name: getTeam
+      tags:
+        - PlayerTeamController
+      responses:
+        '200':
+          description: Team belonging to Player
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Team'
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+      operationId: PlayerTeamController.getTeam
+  /players/{id}:
+    put:
+      x-controller-name: PlayerController
+      x-operation-name: replaceById
+      tags:
+        - PlayerController
+      responses:
+        '204':
+          description: No Content
+          content:
+            application/json:
+              schema:
+                description: Player PUT success
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Player'
+        x-parameter-index: 1
+      operationId: PlayerController.replaceById
+    patch:
+      x-controller-name: PlayerController
+      x-operation-name: updateById
+      tags:
+        - PlayerController
+      responses:
+        '204':
+          description: No Content
+          content:
+            application/json:
+              schema:
+                description: Player PATCH success
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PlayerPartial'
+        x-parameter-index: 1
+      operationId: PlayerController.updateById
+    get:
+      x-controller-name: PlayerController
+      x-operation-name: findById
+      tags:
+        - PlayerController
+      responses:
+        '200':
+          description: Player model instance
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlayerWithRelations'
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+        - name: filter
+          in: query
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Player.Filter'
+      operationId: PlayerController.findById
+    delete:
+      x-controller-name: PlayerController
+      x-operation-name: deleteById
+      tags:
+        - PlayerController
+      responses:
+        '204':
+          description: No Content
+          content:
+            application/json:
+              schema:
+                description: Player DELETE success
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+      operationId: PlayerController.deleteById
+  /players:
+    post:
+      x-controller-name: PlayerController
+      x-operation-name: create
+      tags:
+        - PlayerController
+      responses:
+        '200':
+          description: Player model instance
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Player'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewPlayer'
+      operationId: PlayerController.create
+    patch:
+      x-controller-name: PlayerController
+      x-operation-name: updateAll
+      tags:
+        - PlayerController
+      responses:
+        '200':
+          description: Player PATCH success count
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/loopback.Count'
+      parameters:
+        - name: where
+          in: query
+          content:
+            application/json:
+              schema:
+                type: object
+                title: Player.WhereFilter
+                additionalProperties: true
+                x-typescript-type: '@loopback/repository#Where<Player>'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PlayerPartial'
+      operationId: PlayerController.updateAll
+    get:
+      x-controller-name: PlayerController
+      x-operation-name: find
+      tags:
+        - PlayerController
+      responses:
+        '200':
+          description: Array of Player model instances
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PlayerWithRelations'
+      parameters:
+        - name: filter
+          in: query
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Player.Filter1'
+      operationId: PlayerController.find
+  /standings/count:
+    get:
+      x-controller-name: StandingsController
+      x-operation-name: count
+      tags:
+        - StandingsController
+      responses:
+        '200':
+          description: Standings model count
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/loopback.Count'
+      parameters:
+        - name: where
+          in: query
+          content:
+            application/json:
+              schema:
+                type: object
+                title: Standings.WhereFilter
+                additionalProperties: true
+                x-typescript-type: '@loopback/repository#Where<Standings>'
+      operationId: StandingsController.count
+  /standings/{id}:
+    put:
+      x-controller-name: StandingsController
+      x-operation-name: replaceById
+      tags:
+        - StandingsController
+      responses:
+        '204':
+          description: No Content
+          content:
+            application/json:
+              schema:
+                description: Standings PUT success
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Standings'
+        x-parameter-index: 1
+      operationId: StandingsController.replaceById
+    patch:
+      x-controller-name: StandingsController
+      x-operation-name: updateById
+      tags:
+        - StandingsController
+      responses:
+        '204':
+          description: No Content
+          content:
+            application/json:
+              schema:
+                description: Standings PATCH success
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StandingsPartial'
+        x-parameter-index: 1
+      operationId: StandingsController.updateById
+    get:
+      x-controller-name: StandingsController
+      x-operation-name: findById
+      tags:
+        - StandingsController
+      responses:
+        '200':
+          description: Standings model instance
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandingsWithRelations'
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+        - name: filter
+          in: query
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Standings.Filter'
+      operationId: StandingsController.findById
+    delete:
+      x-controller-name: StandingsController
+      x-operation-name: deleteById
+      tags:
+        - StandingsController
+      responses:
+        '204':
+          description: No Content
+          content:
+            application/json:
+              schema:
+                description: Standings DELETE success
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+      operationId: StandingsController.deleteById
+  /standings:
+    post:
+      x-controller-name: StandingsController
+      x-operation-name: create
+      tags:
+        - StandingsController
+      responses:
+        '200':
+          description: Standings model instance
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Standings'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewStandings'
+      operationId: StandingsController.create
+    patch:
+      x-controller-name: StandingsController
+      x-operation-name: updateAll
+      tags:
+        - StandingsController
+      responses:
+        '200':
+          description: Standings PATCH success count
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/loopback.Count'
+      parameters:
+        - name: where
+          in: query
+          content:
+            application/json:
+              schema:
+                type: object
+                title: Standings.WhereFilter
+                additionalProperties: true
+                x-typescript-type: '@loopback/repository#Where<Standings>'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StandingsPartial'
+      operationId: StandingsController.updateAll
+    get:
+      x-controller-name: StandingsController
+      x-operation-name: find
+      tags:
+        - StandingsController
+      responses:
+        '200':
+          description: Array of Standings model instances
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StandingsWithRelations'
+      parameters:
+        - name: filter
+          in: query
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Standings.Filter1'
+      operationId: StandingsController.find
+  /stats/count:
+    get:
+      x-controller-name: StatsController
+      x-operation-name: count
+      tags:
+        - StatsController
+      responses:
+        '200':
+          description: Stats model count
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/loopback.Count'
+      parameters:
+        - name: where
+          in: query
+          content:
+            application/json:
+              schema:
+                type: object
+                title: Stats.WhereFilter
+                additionalProperties: true
+                x-typescript-type: '@loopback/repository#Where<Stats>'
+      operationId: StatsController.count
+  /stats/{id}:
+    put:
+      x-controller-name: StatsController
+      x-operation-name: replaceById
+      tags:
+        - StatsController
+      responses:
+        '204':
+          description: No Content
+          content:
+            application/json:
+              schema:
+                description: Stats PUT success
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Stats'
+        x-parameter-index: 1
+      operationId: StatsController.replaceById
+    patch:
+      x-controller-name: StatsController
+      x-operation-name: updateById
+      tags:
+        - StatsController
+      responses:
+        '204':
+          description: No Content
+          content:
+            application/json:
+              schema:
+                description: Stats PATCH success
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StatsPartial'
+        x-parameter-index: 1
+      operationId: StatsController.updateById
+    get:
+      x-controller-name: StatsController
+      x-operation-name: findById
+      tags:
+        - StatsController
+      responses:
+        '200':
+          description: Stats model instance
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatsWithRelations'
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+        - name: filter
+          in: query
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Stats.Filter'
+      operationId: StatsController.findById
+    delete:
+      x-controller-name: StatsController
+      x-operation-name: deleteById
+      tags:
+        - StatsController
+      responses:
+        '204':
+          description: No Content
+          content:
+            application/json:
+              schema:
+                description: Stats DELETE success
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+      operationId: StatsController.deleteById
+  /stats:
+    post:
+      x-controller-name: StatsController
+      x-operation-name: create
+      tags:
+        - StatsController
+      responses:
+        '200':
+          description: Stats model instance
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Stats'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewStats'
+      operationId: StatsController.create
+    patch:
+      x-controller-name: StatsController
+      x-operation-name: updateAll
+      tags:
+        - StatsController
+      responses:
+        '200':
+          description: Stats PATCH success count
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/loopback.Count'
+      parameters:
+        - name: where
+          in: query
+          content:
+            application/json:
+              schema:
+                type: object
+                title: Stats.WhereFilter
+                additionalProperties: true
+                x-typescript-type: '@loopback/repository#Where<Stats>'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StatsPartial'
+      operationId: StatsController.updateAll
+    get:
+      x-controller-name: StatsController
+      x-operation-name: find
+      tags:
+        - StatsController
+      responses:
+        '200':
+          description: Array of Stats model instances
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StatsWithRelations'
+      parameters:
+        - name: filter
+          in: query
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Stats.Filter1'
+      operationId: StatsController.find
+  /teams/count:
+    get:
+      x-controller-name: TeamController
+      x-operation-name: count
+      tags:
+        - TeamController
+      responses:
+        '200':
+          description: Team model count
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/loopback.Count'
+      parameters:
+        - name: where
+          in: query
+          content:
+            application/json:
+              schema:
+                type: object
+                title: Team.WhereFilter
+                additionalProperties: true
+                x-typescript-type: '@loopback/repository#Where<Team>'
+      operationId: TeamController.count
+  /teams/{id}/matches:
+    post:
+      x-controller-name: TeamMatchController
+      x-operation-name: create
+      tags:
+        - TeamMatchController
+      responses:
+        '200':
+          description: Team model instance
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Match'
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewMatchInTeam'
+        x-parameter-index: 1
+      operationId: TeamMatchController.create
+    patch:
+      x-controller-name: TeamMatchController
+      x-operation-name: patch
+      tags:
+        - TeamMatchController
+      responses:
+        '200':
+          description: Team.Match PATCH success count
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/loopback.Count'
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+        - name: where
+          in: query
+          content:
+            application/json:
+              schema:
+                type: object
+                title: Match.WhereFilter
+                additionalProperties: true
+                x-typescript-type: '@loopback/repository#Where<Match>'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MatchPartial'
+        x-parameter-index: 1
+      operationId: TeamMatchController.patch
+    get:
+      x-controller-name: TeamMatchController
+      x-operation-name: find
+      tags:
+        - TeamMatchController
+      responses:
+        '200':
+          description: Array of Team has many Match
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Match'
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+        - name: filter
+          in: query
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+      operationId: TeamMatchController.find
+    delete:
+      x-controller-name: TeamMatchController
+      x-operation-name: delete
+      tags:
+        - TeamMatchController
+      responses:
+        '200':
+          description: Team.Match DELETE success count
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/loopback.Count'
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+        - name: where
+          in: query
+          content:
+            application/json:
+              schema:
+                type: object
+                title: Match.WhereFilter
+                additionalProperties: true
+                x-typescript-type: '@loopback/repository#Where<Match>'
+      operationId: TeamMatchController.delete
+  /teams/{id}/players:
+    post:
+      x-controller-name: TeamPlayerController
+      x-operation-name: create
+      tags:
+        - TeamPlayerController
+      responses:
+        '200':
+          description: Team model instance
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Player'
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewPlayerInTeam'
+        x-parameter-index: 1
+      operationId: TeamPlayerController.create
+    patch:
+      x-controller-name: TeamPlayerController
+      x-operation-name: patch
+      tags:
+        - TeamPlayerController
+      responses:
+        '200':
+          description: Team.Player PATCH success count
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/loopback.Count'
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+        - name: where
+          in: query
+          content:
+            application/json:
+              schema:
+                type: object
+                title: Player.WhereFilter
+                additionalProperties: true
+                x-typescript-type: '@loopback/repository#Where<Player>'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PlayerPartial'
+        x-parameter-index: 1
+      operationId: TeamPlayerController.patch
+    get:
+      x-controller-name: TeamPlayerController
+      x-operation-name: find
+      tags:
+        - TeamPlayerController
+      responses:
+        '200':
+          description: Array of Team has many Player
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Player'
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+        - name: filter
+          in: query
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+      operationId: TeamPlayerController.find
+    delete:
+      x-controller-name: TeamPlayerController
+      x-operation-name: delete
+      tags:
+        - TeamPlayerController
+      responses:
+        '200':
+          description: Team.Player DELETE success count
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/loopback.Count'
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+        - name: where
+          in: query
+          content:
+            application/json:
+              schema:
+                type: object
+                title: Player.WhereFilter
+                additionalProperties: true
+                x-typescript-type: '@loopback/repository#Where<Player>'
+      operationId: TeamPlayerController.delete
+  /teams/{id}/standings:
+    post:
+      x-controller-name: TeamStandingsController
+      x-operation-name: create
+      tags:
+        - TeamStandingsController
+      responses:
+        '200':
+          description: Team model instance
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Standings'
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewStandingsInTeam'
+        x-parameter-index: 1
+      operationId: TeamStandingsController.create
+    patch:
+      x-controller-name: TeamStandingsController
+      x-operation-name: patch
+      tags:
+        - TeamStandingsController
+      responses:
+        '200':
+          description: Team.Standings PATCH success count
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/loopback.Count'
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+        - name: where
+          in: query
+          content:
+            application/json:
+              schema:
+                type: object
+                title: Standings.WhereFilter
+                additionalProperties: true
+                x-typescript-type: '@loopback/repository#Where<Standings>'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StandingsPartial'
+        x-parameter-index: 1
+      operationId: TeamStandingsController.patch
+    get:
+      x-controller-name: TeamStandingsController
+      x-operation-name: get
+      tags:
+        - TeamStandingsController
+      responses:
+        '200':
+          description: Team has one Standings
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Standings'
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+        - name: filter
+          in: query
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+      operationId: TeamStandingsController.get
+    delete:
+      x-controller-name: TeamStandingsController
+      x-operation-name: delete
+      tags:
+        - TeamStandingsController
+      responses:
+        '200':
+          description: Team.Standings DELETE success count
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/loopback.Count'
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+        - name: where
+          in: query
+          content:
+            application/json:
+              schema:
+                type: object
+                title: Standings.WhereFilter
+                additionalProperties: true
+                x-typescript-type: '@loopback/repository#Where<Standings>'
+      operationId: TeamStandingsController.delete
+  /teams/{id}:
+    put:
+      x-controller-name: TeamController
+      x-operation-name: replaceById
+      tags:
+        - TeamController
+      responses:
+        '204':
+          description: No Content
+          content:
+            application/json:
+              schema:
+                description: Team PUT success
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Team'
+        x-parameter-index: 1
+      operationId: TeamController.replaceById
+    patch:
+      x-controller-name: TeamController
+      x-operation-name: updateById
+      tags:
+        - TeamController
+      responses:
+        '204':
+          description: No Content
+          content:
+            application/json:
+              schema:
+                description: Team PATCH success
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TeamPartial'
+        x-parameter-index: 1
+      operationId: TeamController.updateById
+    get:
+      x-controller-name: TeamController
+      x-operation-name: findById
+      tags:
+        - TeamController
+      responses:
+        '200':
+          description: Team model instance
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamWithRelations'
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+        - name: filter
+          in: query
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Team.Filter'
+      operationId: TeamController.findById
+    delete:
+      x-controller-name: TeamController
+      x-operation-name: deleteById
+      tags:
+        - TeamController
+      responses:
+        '204':
+          description: No Content
+          content:
+            application/json:
+              schema:
+                description: Team DELETE success
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+      operationId: TeamController.deleteById
+  /teams:
+    post:
+      x-controller-name: TeamController
+      x-operation-name: create
+      tags:
+        - TeamController
+      responses:
+        '200':
+          description: Team model instance
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Team'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewTeam'
+      operationId: TeamController.create
+    patch:
+      x-controller-name: TeamController
+      x-operation-name: updateAll
+      tags:
+        - TeamController
+      responses:
+        '200':
+          description: Team PATCH success count
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/loopback.Count'
+      parameters:
+        - name: where
+          in: query
+          content:
+            application/json:
+              schema:
+                type: object
+                title: Team.WhereFilter
+                additionalProperties: true
+                x-typescript-type: '@loopback/repository#Where<Team>'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TeamPartial'
+      operationId: TeamController.updateAll
+    get:
+      x-controller-name: TeamController
+      x-operation-name: find
+      tags:
+        - TeamController
+      responses:
+        '200':
+          description: Array of Team model instances
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TeamWithRelations'
+      parameters:
+        - name: filter
+          in: query
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Team.Filter1'
+      operationId: TeamController.find
+servers:
+  - url: /
+components:
+  schemas:
+    Team:
+      title: Team
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+        country:
+          type: string
+        coach:
+          type: string
+        group_name:
+          type: string
+      required:
+        - name
+      additionalProperties: false
+    NewTeam:
+      title: NewTeam
+      type: object
+      description: >-
+        (tsType: Omit<Team, 'id'>, schemaOptions: { title: 'NewTeam', exclude: [
+        'id' ] })
+      properties:
+        name:
+          type: string
+        country:
+          type: string
+        coach:
+          type: string
+        group_name:
+          type: string
+      required:
+        - name
+      additionalProperties: false
+      x-typescript-type: Omit<Team, 'id'>
+    StatsWithRelations:
+      title: StatsWithRelations
+      type: object
+      description: '(tsType: StatsWithRelations, schemaOptions: { includeRelations: true })'
+      properties:
+        id:
+          type: number
+        total_goals:
+          type: number
+        total_assists:
+          type: number
+        total_yellow_cards:
+          type: number
+        total_red_cards:
+          type: number
+      additionalProperties: false
+      x-typescript-type: StatsWithRelations
+    MatchWithRelations:
+      title: MatchWithRelations
+      type: object
+      description: '(tsType: MatchWithRelations, schemaOptions: { includeRelations: true })'
+      properties:
+        id:
+          type: number
+        match_date:
+          type: string
+          format: date-time
+        venue:
+          type: string
+        home_score:
+          type: number
+        away_score:
+          type: number
+        home_team_id:
+          type: number
+        away_team_id:
+          type: number
+        homeTeam:
+          $ref: '#/components/schemas/TeamWithRelations'
+        foreignKey: {}
+        awayTeam:
+          $ref: '#/components/schemas/TeamWithRelations'
+        matchEvents:
+          type: array
+          items:
+            $ref: '#/components/schemas/MatchEventWithRelations'
+        players:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlayerWithRelations'
+      additionalProperties: false
+      x-typescript-type: MatchWithRelations
+    MatchEventWithRelations:
+      title: MatchEventWithRelations
+      type: object
+      description: >-
+        (tsType: MatchEventWithRelations, schemaOptions: { includeRelations:
+        true })
+      properties:
+        id:
+          type: number
+        event_type:
+          type: string
+        minute:
+          type: number
+        player_id:
+          type: number
+        match_id:
+          type: number
+        player:
+          $ref: '#/components/schemas/PlayerWithRelations'
+        foreignKey: {}
+        match:
+          $ref: '#/components/schemas/MatchWithRelations'
+      required:
+        - event_type
+      additionalProperties: false
+      x-typescript-type: MatchEventWithRelations
+    PlayerWithRelations:
+      title: PlayerWithRelations
+      type: object
+      description: '(tsType: PlayerWithRelations, schemaOptions: { includeRelations: true })'
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+        position:
+          type: string
+        nationality:
+          type: string
+        shirt_number:
+          type: number
+        team_id:
+          type: number
+        team:
+          $ref: '#/components/schemas/TeamWithRelations'
+        foreignKey: {}
+        stats:
+          $ref: '#/components/schemas/StatsWithRelations'
+        matchEvents:
+          type: array
+          items:
+            $ref: '#/components/schemas/MatchEventWithRelations'
+        matches:
+          type: array
+          items:
+            $ref: '#/components/schemas/MatchWithRelations'
+      required:
+        - name
+      additionalProperties: false
+      x-typescript-type: PlayerWithRelations
+    StandingsWithRelations:
+      title: StandingsWithRelations
+      type: object
+      description: >-
+        (tsType: StandingsWithRelations, schemaOptions: { includeRelations: true
+        })
+      properties:
+        id:
+          type: number
+        group_name:
+          type: string
+        team_name:
+          type: string
+        points:
+          type: number
+        goal_diff:
+          type: number
+        goals_for:
+          type: number
+        goals_against:
+          type: number
+        played:
+          type: number
+        win:
+          type: number
+        draw:
+          type: number
+        loss:
+          type: number
+      required:
+        - team_name
+      additionalProperties: false
+      x-typescript-type: StandingsWithRelations
+    TeamWithRelations:
+      title: TeamWithRelations
+      type: object
+      description: '(tsType: TeamWithRelations, schemaOptions: { includeRelations: true })'
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+        country:
+          type: string
+        coach:
+          type: string
+        group_name:
+          type: string
+        players:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlayerWithRelations'
+        standings:
+          $ref: '#/components/schemas/StandingsWithRelations'
+        homeMatches:
+          type: array
+          items:
+            $ref: '#/components/schemas/MatchWithRelations'
+        awayMatches:
+          type: array
+          items:
+            $ref: '#/components/schemas/MatchWithRelations'
+      required:
+        - name
+      additionalProperties: false
+      x-typescript-type: TeamWithRelations
+    TeamPartial:
+      title: TeamPartial
+      type: object
+      description: '(tsType: Partial<Team>, schemaOptions: { partial: true })'
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+        country:
+          type: string
+        coach:
+          type: string
+        group_name:
+          type: string
+      additionalProperties: false
+      x-typescript-type: Partial<Team>
+    Standings:
+      title: Standings
+      type: object
+      properties:
+        id:
+          type: number
+        group_name:
+          type: string
+        team_name:
+          type: string
+        points:
+          type: number
+        goal_diff:
+          type: number
+        goals_for:
+          type: number
+        goals_against:
+          type: number
+        played:
+          type: number
+        win:
+          type: number
+        draw:
+          type: number
+        loss:
+          type: number
+      required:
+        - team_name
+      additionalProperties: false
+    NewStandingsInTeam:
+      title: NewStandingsInTeam
+      type: object
+      description: >-
+        (tsType: @loopback/repository-json-schema#Optional<Omit<Standings,
+        'id'>, 'id'>, schemaOptions: { title: 'NewStandingsInTeam', exclude: [
+        'id' ], optional: [ 'id' ] })
+      properties:
+        group_name:
+          type: string
+        team_name:
+          type: string
+        points:
+          type: number
+        goal_diff:
+          type: number
+        goals_for:
+          type: number
+        goals_against:
+          type: number
+        played:
+          type: number
+        win:
+          type: number
+        draw:
+          type: number
+        loss:
+          type: number
+      required:
+        - team_name
+      additionalProperties: false
+      x-typescript-type: '@loopback/repository-json-schema#Optional<Omit<Standings, ''id''>, ''id''>'
+    StandingsPartial:
+      title: StandingsPartial
+      type: object
+      description: '(tsType: Partial<Standings>, schemaOptions: { partial: true })'
+      properties:
+        id:
+          type: number
+        group_name:
+          type: string
+        team_name:
+          type: string
+        points:
+          type: number
+        goal_diff:
+          type: number
+        goals_for:
+          type: number
+        goals_against:
+          type: number
+        played:
+          type: number
+        win:
+          type: number
+        draw:
+          type: number
+        loss:
+          type: number
+      additionalProperties: false
+      x-typescript-type: Partial<Standings>
+    Player:
+      title: Player
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+        position:
+          type: string
+        nationality:
+          type: string
+        shirt_number:
+          type: number
+        team_id:
+          type: number
+      required:
+        - name
+      additionalProperties: false
+    NewPlayerInTeam:
+      title: NewPlayerInTeam
+      type: object
+      description: >-
+        (tsType: @loopback/repository-json-schema#Optional<Omit<Player, 'id'>,
+        'team_id'>, schemaOptions: { title: 'NewPlayerInTeam', exclude: [ 'id'
+        ], optional: [ 'team_id' ] })
+      properties:
+        name:
+          type: string
+        position:
+          type: string
+        nationality:
+          type: string
+        shirt_number:
+          type: number
+        team_id:
+          type: number
+      required:
+        - name
+      additionalProperties: false
+      x-typescript-type: '@loopback/repository-json-schema#Optional<Omit<Player, ''id''>, ''team_id''>'
+    PlayerPartial:
+      title: PlayerPartial
+      type: object
+      description: '(tsType: Partial<Player>, schemaOptions: { partial: true })'
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+        position:
+          type: string
+        nationality:
+          type: string
+        shirt_number:
+          type: number
+        team_id:
+          type: number
+      additionalProperties: false
+      x-typescript-type: Partial<Player>
+    Match:
+      title: Match
+      type: object
+      properties:
+        id:
+          type: number
+        match_date:
+          type: string
+          format: date-time
+        venue:
+          type: string
+        home_score:
+          type: number
+        away_score:
+          type: number
+        home_team_id:
+          type: number
+        away_team_id:
+          type: number
+      additionalProperties: false
+    NewMatchInTeam:
+      title: NewMatchInTeam
+      type: object
+      description: >-
+        (tsType: @loopback/repository-json-schema#Optional<Omit<Match, 'id'>,
+        'home_team_id'>, schemaOptions: { title: 'NewMatchInTeam', exclude: [
+        'id' ], optional: [ 'home_team_id' ] })
+      properties:
+        match_date:
+          type: string
+          format: date-time
+        venue:
+          type: string
+        home_score:
+          type: number
+        away_score:
+          type: number
+        home_team_id:
+          type: number
+        away_team_id:
+          type: number
+      additionalProperties: false
+      x-typescript-type: >-
+        @loopback/repository-json-schema#Optional<Omit<Match, 'id'>,
+        'home_team_id'>
+    MatchPartial:
+      title: MatchPartial
+      type: object
+      description: '(tsType: Partial<Match>, schemaOptions: { partial: true })'
+      properties:
+        id:
+          type: number
+        match_date:
+          type: string
+          format: date-time
+        venue:
+          type: string
+        home_score:
+          type: number
+        away_score:
+          type: number
+        home_team_id:
+          type: number
+        away_team_id:
+          type: number
+      additionalProperties: false
+      x-typescript-type: Partial<Match>
+    Stats:
+      title: Stats
+      type: object
+      properties:
+        id:
+          type: number
+        total_goals:
+          type: number
+        total_assists:
+          type: number
+        total_yellow_cards:
+          type: number
+        total_red_cards:
+          type: number
+      additionalProperties: false
+    NewStats:
+      title: NewStats
+      type: object
+      description: >-
+        (tsType: Omit<Stats, 'id'>, schemaOptions: { title: 'NewStats', exclude:
+        [ 'id' ] })
+      properties:
+        total_goals:
+          type: number
+        total_assists:
+          type: number
+        total_yellow_cards:
+          type: number
+        total_red_cards:
+          type: number
+      additionalProperties: false
+      x-typescript-type: Omit<Stats, 'id'>
+    StatsPartial:
+      title: StatsPartial
+      type: object
+      description: '(tsType: Partial<Stats>, schemaOptions: { partial: true })'
+      properties:
+        id:
+          type: number
+        total_goals:
+          type: number
+        total_assists:
+          type: number
+        total_yellow_cards:
+          type: number
+        total_red_cards:
+          type: number
+      additionalProperties: false
+      x-typescript-type: Partial<Stats>
+    NewStandings:
+      title: NewStandings
+      type: object
+      description: >-
+        (tsType: Omit<Standings, 'id'>, schemaOptions: { title: 'NewStandings',
+        exclude: [ 'id' ] })
+      properties:
+        group_name:
+          type: string
+        team_name:
+          type: string
+        points:
+          type: number
+        goal_diff:
+          type: number
+        goals_for:
+          type: number
+        goals_against:
+          type: number
+        played:
+          type: number
+        win:
+          type: number
+        draw:
+          type: number
+        loss:
+          type: number
+      required:
+        - team_name
+      additionalProperties: false
+      x-typescript-type: Omit<Standings, 'id'>
+    NewPlayer:
+      title: NewPlayer
+      type: object
+      description: >-
+        (tsType: Omit<Player, 'id'>, schemaOptions: { title: 'NewPlayer',
+        exclude: [ 'id' ] })
+      properties:
+        name:
+          type: string
+        position:
+          type: string
+        nationality:
+          type: string
+        shirt_number:
+          type: number
+        team_id:
+          type: number
+      required:
+        - name
+      additionalProperties: false
+      x-typescript-type: Omit<Player, 'id'>
+    NewStatsInPlayer:
+      title: NewStatsInPlayer
+      type: object
+      description: >-
+        (tsType: @loopback/repository-json-schema#Optional<Omit<Stats, 'id'>,
+        'id'>, schemaOptions: { title: 'NewStatsInPlayer', exclude: [ 'id' ],
+        optional: [ 'id' ] })
+      properties:
+        total_goals:
+          type: number
+        total_assists:
+          type: number
+        total_yellow_cards:
+          type: number
+        total_red_cards:
+          type: number
+      additionalProperties: false
+      x-typescript-type: '@loopback/repository-json-schema#Optional<Omit<Stats, ''id''>, ''id''>'
+    NewMatchInPlayer:
+      title: NewMatchInPlayer
+      type: object
+      description: >-
+        (tsType: Omit<Match, 'id'>, schemaOptions: { title: 'NewMatchInPlayer',
+        exclude: [ 'id' ] })
+      properties:
+        match_date:
+          type: string
+          format: date-time
+        venue:
+          type: string
+        home_score:
+          type: number
+        away_score:
+          type: number
+        home_team_id:
+          type: number
+        away_team_id:
+          type: number
+      additionalProperties: false
+      x-typescript-type: Omit<Match, 'id'>
+    MatchEvent:
+      title: MatchEvent
+      type: object
+      properties:
+        id:
+          type: number
+        event_type:
+          type: string
+        minute:
+          type: number
+        player_id:
+          type: number
+        match_id:
+          type: number
+      required:
+        - event_type
+      additionalProperties: false
+    NewMatchEventInPlayer:
+      title: NewMatchEventInPlayer
+      type: object
+      description: >-
+        (tsType: @loopback/repository-json-schema#Optional<Omit<MatchEvent,
+        'id'>, 'player_id'>, schemaOptions: { title: 'NewMatchEventInPlayer',
+        exclude: [ 'id' ], optional: [ 'player_id' ] })
+      properties:
+        event_type:
+          type: string
+        minute:
+          type: number
+        player_id:
+          type: number
+        match_id:
+          type: number
+      required:
+        - event_type
+      additionalProperties: false
+      x-typescript-type: >-
+        @loopback/repository-json-schema#Optional<Omit<MatchEvent, 'id'>,
+        'player_id'>
+    MatchEventPartial:
+      title: MatchEventPartial
+      type: object
+      description: '(tsType: Partial<MatchEvent>, schemaOptions: { partial: true })'
+      properties:
+        id:
+          type: number
+        event_type:
+          type: string
+        minute:
+          type: number
+        player_id:
+          type: number
+        match_id:
+          type: number
+      additionalProperties: false
+      x-typescript-type: Partial<MatchEvent>
+    NewMatch:
+      title: NewMatch
+      type: object
+      description: >-
+        (tsType: Omit<Match, 'id'>, schemaOptions: { title: 'NewMatch', exclude:
+        [ 'id' ] })
+      properties:
+        match_date:
+          type: string
+          format: date-time
+        venue:
+          type: string
+        home_score:
+          type: number
+        away_score:
+          type: number
+        home_team_id:
+          type: number
+        away_team_id:
+          type: number
+      additionalProperties: false
+      x-typescript-type: Omit<Match, 'id'>
+    NewPlayerInMatch:
+      title: NewPlayerInMatch
+      type: object
+      description: >-
+        (tsType: Omit<Player, 'id'>, schemaOptions: { title: 'NewPlayerInMatch',
+        exclude: [ 'id' ] })
+      properties:
+        name:
+          type: string
+        position:
+          type: string
+        nationality:
+          type: string
+        shirt_number:
+          type: number
+        team_id:
+          type: number
+      required:
+        - name
+      additionalProperties: false
+      x-typescript-type: Omit<Player, 'id'>
+    NewMatchEventInMatch:
+      title: NewMatchEventInMatch
+      type: object
+      description: >-
+        (tsType: @loopback/repository-json-schema#Optional<Omit<MatchEvent,
+        'id'>, 'match_id'>, schemaOptions: { title: 'NewMatchEventInMatch',
+        exclude: [ 'id' ], optional: [ 'match_id' ] })
+      properties:
+        event_type:
+          type: string
+        minute:
+          type: number
+        player_id:
+          type: number
+        match_id:
+          type: number
+      required:
+        - event_type
+      additionalProperties: false
+      x-typescript-type: >-
+        @loopback/repository-json-schema#Optional<Omit<MatchEvent, 'id'>,
+        'match_id'>
+    NewMatchEvent:
+      title: NewMatchEvent
+      type: object
+      description: >-
+        (tsType: Omit<MatchEvent, 'id'>, schemaOptions: { title:
+        'NewMatchEvent', exclude: [ 'id' ] })
+      properties:
+        event_type:
+          type: string
+        minute:
+          type: number
+        player_id:
+          type: number
+        match_id:
+          type: number
+      required:
+        - event_type
+      additionalProperties: false
+      x-typescript-type: Omit<MatchEvent, 'id'>
+    loopback.Count:
+      type: object
+      title: loopback.Count
+      x-typescript-type: '@loopback/repository#Count'
+      properties:
+        count:
+          type: number
+    MatchEvent.ScopeFilter:
+      type: object
+      properties:
+        offset:
+          type: integer
+          minimum: 0
+        limit:
+          type: integer
+          minimum: 1
+          example: 100
+        skip:
+          type: integer
+          minimum: 0
+        order:
+          oneOf:
+            - type: string
+            - type: array
+              items:
+                type: string
+        where:
+          type: object
+          additionalProperties: true
+        fields:
+          oneOf:
+            - type: object
+              properties: {}
+              additionalProperties: true
+            - type: array
+              items:
+                type: string
+              uniqueItems: true
+        include:
+          type: array
+          items:
+            type: object
+            properties: {}
+            additionalProperties: true
+      additionalProperties: false
+      title: MatchEvent.ScopeFilter
+    MatchEvent.IncludeFilter.Items:
+      title: MatchEvent.IncludeFilter.Items
+      type: object
+      properties:
+        relation:
+          type: string
+          enum:
+            - player
+            - match
+        scope:
+          $ref: '#/components/schemas/MatchEvent.ScopeFilter'
+    MatchEvent.Filter:
+      type: object
+      title: MatchEvent.Filter
+      properties:
+        offset:
+          type: integer
+          minimum: 0
+        limit:
+          type: integer
+          minimum: 1
+          example: 100
+        skip:
+          type: integer
+          minimum: 0
+        order:
+          oneOf:
+            - type: string
+            - type: array
+              items:
+                type: string
+        fields:
+          oneOf:
+            - type: object
+              properties:
+                id:
+                  type: boolean
+                event_type:
+                  type: boolean
+                minute:
+                  type: boolean
+                player_id:
+                  type: boolean
+                match_id:
+                  type: boolean
+              additionalProperties: false
+            - type: array
+              items:
+                type: string
+                enum:
+                  - id
+                  - event_type
+                  - minute
+                  - player_id
+                  - match_id
+                example: id
+              uniqueItems: true
+          title: MatchEvent.Fields
+        include:
+          title: MatchEvent.IncludeFilter
+          type: array
+          items:
+            anyOf:
+              - $ref: '#/components/schemas/MatchEvent.IncludeFilter.Items'
+              - type: string
+      additionalProperties: false
+      x-typescript-type: '@loopback/repository#Filter<MatchEvent>'
+    MatchEvent.Filter1:
+      type: object
+      title: MatchEvent.Filter
+      properties:
+        offset:
+          type: integer
+          minimum: 0
+        limit:
+          type: integer
+          minimum: 1
+          example: 100
+        skip:
+          type: integer
+          minimum: 0
+        order:
+          oneOf:
+            - type: string
+            - type: array
+              items:
+                type: string
+        where:
+          title: MatchEvent.WhereFilter
+          type: object
+          additionalProperties: true
+        fields:
+          oneOf:
+            - type: object
+              properties:
+                id:
+                  type: boolean
+                event_type:
+                  type: boolean
+                minute:
+                  type: boolean
+                player_id:
+                  type: boolean
+                match_id:
+                  type: boolean
+              additionalProperties: false
+            - type: array
+              items:
+                type: string
+                enum:
+                  - id
+                  - event_type
+                  - minute
+                  - player_id
+                  - match_id
+                example: id
+              uniqueItems: true
+          title: MatchEvent.Fields
+        include:
+          title: MatchEvent.IncludeFilter
+          type: array
+          items:
+            anyOf:
+              - $ref: '#/components/schemas/MatchEvent.IncludeFilter.Items'
+              - type: string
+      additionalProperties: false
+      x-typescript-type: '@loopback/repository#Filter<MatchEvent>'
+    Match.ScopeFilter:
+      type: object
+      properties:
+        offset:
+          type: integer
+          minimum: 0
+        limit:
+          type: integer
+          minimum: 1
+          example: 100
+        skip:
+          type: integer
+          minimum: 0
+        order:
+          oneOf:
+            - type: string
+            - type: array
+              items:
+                type: string
+        where:
+          type: object
+          additionalProperties: true
+        fields:
+          oneOf:
+            - type: object
+              properties: {}
+              additionalProperties: true
+            - type: array
+              items:
+                type: string
+              uniqueItems: true
+        include:
+          type: array
+          items:
+            type: object
+            properties: {}
+            additionalProperties: true
+      additionalProperties: false
+      title: Match.ScopeFilter
+    Match.IncludeFilter.Items:
+      title: Match.IncludeFilter.Items
+      type: object
+      properties:
+        relation:
+          type: string
+          enum:
+            - homeTeam
+            - awayTeam
+            - matchEvents
+            - players
+        scope:
+          $ref: '#/components/schemas/Match.ScopeFilter'
+    Match.Filter:
+      type: object
+      title: Match.Filter
+      properties:
+        offset:
+          type: integer
+          minimum: 0
+        limit:
+          type: integer
+          minimum: 1
+          example: 100
+        skip:
+          type: integer
+          minimum: 0
+        order:
+          oneOf:
+            - type: string
+            - type: array
+              items:
+                type: string
+        fields:
+          oneOf:
+            - type: object
+              properties:
+                id:
+                  type: boolean
+                match_date:
+                  type: boolean
+                venue:
+                  type: boolean
+                home_score:
+                  type: boolean
+                away_score:
+                  type: boolean
+                home_team_id:
+                  type: boolean
+                away_team_id:
+                  type: boolean
+              additionalProperties: false
+            - type: array
+              items:
+                type: string
+                enum:
+                  - id
+                  - match_date
+                  - venue
+                  - home_score
+                  - away_score
+                  - home_team_id
+                  - away_team_id
+                example: id
+              uniqueItems: true
+          title: Match.Fields
+        include:
+          title: Match.IncludeFilter
+          type: array
+          items:
+            anyOf:
+              - $ref: '#/components/schemas/Match.IncludeFilter.Items'
+              - type: string
+      additionalProperties: false
+      x-typescript-type: '@loopback/repository#Filter<Match>'
+    Match.Filter1:
+      type: object
+      title: Match.Filter
+      properties:
+        offset:
+          type: integer
+          minimum: 0
+        limit:
+          type: integer
+          minimum: 1
+          example: 100
+        skip:
+          type: integer
+          minimum: 0
+        order:
+          oneOf:
+            - type: string
+            - type: array
+              items:
+                type: string
+        where:
+          title: Match.WhereFilter
+          type: object
+          additionalProperties: true
+        fields:
+          oneOf:
+            - type: object
+              properties:
+                id:
+                  type: boolean
+                match_date:
+                  type: boolean
+                venue:
+                  type: boolean
+                home_score:
+                  type: boolean
+                away_score:
+                  type: boolean
+                home_team_id:
+                  type: boolean
+                away_team_id:
+                  type: boolean
+              additionalProperties: false
+            - type: array
+              items:
+                type: string
+                enum:
+                  - id
+                  - match_date
+                  - venue
+                  - home_score
+                  - away_score
+                  - home_team_id
+                  - away_team_id
+                example: id
+              uniqueItems: true
+          title: Match.Fields
+        include:
+          title: Match.IncludeFilter
+          type: array
+          items:
+            anyOf:
+              - $ref: '#/components/schemas/Match.IncludeFilter.Items'
+              - type: string
+      additionalProperties: false
+      x-typescript-type: '@loopback/repository#Filter<Match>'
+    PingResponse:
+      type: object
+      title: PingResponse
+      properties:
+        greeting:
+          type: string
+        date:
+          type: string
+        url:
+          type: string
+        headers:
+          type: object
+          properties:
+            Content-Type:
+              type: string
+          additionalProperties: true
+    Player.ScopeFilter:
+      type: object
+      properties:
+        offset:
+          type: integer
+          minimum: 0
+        limit:
+          type: integer
+          minimum: 1
+          example: 100
+        skip:
+          type: integer
+          minimum: 0
+        order:
+          oneOf:
+            - type: string
+            - type: array
+              items:
+                type: string
+        where:
+          type: object
+          additionalProperties: true
+        fields:
+          oneOf:
+            - type: object
+              properties: {}
+              additionalProperties: true
+            - type: array
+              items:
+                type: string
+              uniqueItems: true
+        include:
+          type: array
+          items:
+            type: object
+            properties: {}
+            additionalProperties: true
+      additionalProperties: false
+      title: Player.ScopeFilter
+    Player.IncludeFilter.Items:
+      title: Player.IncludeFilter.Items
+      type: object
+      properties:
+        relation:
+          type: string
+          enum:
+            - team
+            - stats
+            - matchEvents
+            - matches
+        scope:
+          $ref: '#/components/schemas/Player.ScopeFilter'
+    Player.Filter:
+      type: object
+      title: Player.Filter
+      properties:
+        offset:
+          type: integer
+          minimum: 0
+        limit:
+          type: integer
+          minimum: 1
+          example: 100
+        skip:
+          type: integer
+          minimum: 0
+        order:
+          oneOf:
+            - type: string
+            - type: array
+              items:
+                type: string
+        fields:
+          oneOf:
+            - type: object
+              properties:
+                id:
+                  type: boolean
+                name:
+                  type: boolean
+                position:
+                  type: boolean
+                nationality:
+                  type: boolean
+                shirt_number:
+                  type: boolean
+                team_id:
+                  type: boolean
+              additionalProperties: false
+            - type: array
+              items:
+                type: string
+                enum:
+                  - id
+                  - name
+                  - position
+                  - nationality
+                  - shirt_number
+                  - team_id
+                example: id
+              uniqueItems: true
+          title: Player.Fields
+        include:
+          title: Player.IncludeFilter
+          type: array
+          items:
+            anyOf:
+              - $ref: '#/components/schemas/Player.IncludeFilter.Items'
+              - type: string
+      additionalProperties: false
+      x-typescript-type: '@loopback/repository#Filter<Player>'
+    Player.Filter1:
+      type: object
+      title: Player.Filter
+      properties:
+        offset:
+          type: integer
+          minimum: 0
+        limit:
+          type: integer
+          minimum: 1
+          example: 100
+        skip:
+          type: integer
+          minimum: 0
+        order:
+          oneOf:
+            - type: string
+            - type: array
+              items:
+                type: string
+        where:
+          title: Player.WhereFilter
+          type: object
+          additionalProperties: true
+        fields:
+          oneOf:
+            - type: object
+              properties:
+                id:
+                  type: boolean
+                name:
+                  type: boolean
+                position:
+                  type: boolean
+                nationality:
+                  type: boolean
+                shirt_number:
+                  type: boolean
+                team_id:
+                  type: boolean
+              additionalProperties: false
+            - type: array
+              items:
+                type: string
+                enum:
+                  - id
+                  - name
+                  - position
+                  - nationality
+                  - shirt_number
+                  - team_id
+                example: id
+              uniqueItems: true
+          title: Player.Fields
+        include:
+          title: Player.IncludeFilter
+          type: array
+          items:
+            anyOf:
+              - $ref: '#/components/schemas/Player.IncludeFilter.Items'
+              - type: string
+      additionalProperties: false
+      x-typescript-type: '@loopback/repository#Filter<Player>'
+    Standings.Filter:
+      type: object
+      title: Standings.Filter
+      properties:
+        offset:
+          type: integer
+          minimum: 0
+        limit:
+          type: integer
+          minimum: 1
+          example: 100
+        skip:
+          type: integer
+          minimum: 0
+        order:
+          oneOf:
+            - type: string
+            - type: array
+              items:
+                type: string
+        fields:
+          oneOf:
+            - type: object
+              properties:
+                id:
+                  type: boolean
+                group_name:
+                  type: boolean
+                team_name:
+                  type: boolean
+                points:
+                  type: boolean
+                goal_diff:
+                  type: boolean
+                goals_for:
+                  type: boolean
+                goals_against:
+                  type: boolean
+                played:
+                  type: boolean
+                win:
+                  type: boolean
+                draw:
+                  type: boolean
+                loss:
+                  type: boolean
+              additionalProperties: false
+            - type: array
+              items:
+                type: string
+                enum:
+                  - id
+                  - group_name
+                  - team_name
+                  - points
+                  - goal_diff
+                  - goals_for
+                  - goals_against
+                  - played
+                  - win
+                  - draw
+                  - loss
+                example: id
+              uniqueItems: true
+          title: Standings.Fields
+      additionalProperties: false
+      x-typescript-type: '@loopback/repository#Filter<Standings>'
+    Standings.Filter1:
+      type: object
+      title: Standings.Filter
+      properties:
+        offset:
+          type: integer
+          minimum: 0
+        limit:
+          type: integer
+          minimum: 1
+          example: 100
+        skip:
+          type: integer
+          minimum: 0
+        order:
+          oneOf:
+            - type: string
+            - type: array
+              items:
+                type: string
+        where:
+          title: Standings.WhereFilter
+          type: object
+          additionalProperties: true
+        fields:
+          oneOf:
+            - type: object
+              properties:
+                id:
+                  type: boolean
+                group_name:
+                  type: boolean
+                team_name:
+                  type: boolean
+                points:
+                  type: boolean
+                goal_diff:
+                  type: boolean
+                goals_for:
+                  type: boolean
+                goals_against:
+                  type: boolean
+                played:
+                  type: boolean
+                win:
+                  type: boolean
+                draw:
+                  type: boolean
+                loss:
+                  type: boolean
+              additionalProperties: false
+            - type: array
+              items:
+                type: string
+                enum:
+                  - id
+                  - group_name
+                  - team_name
+                  - points
+                  - goal_diff
+                  - goals_for
+                  - goals_against
+                  - played
+                  - win
+                  - draw
+                  - loss
+                example: id
+              uniqueItems: true
+          title: Standings.Fields
+      additionalProperties: false
+      x-typescript-type: '@loopback/repository#Filter<Standings>'
+    Stats.Filter:
+      type: object
+      title: Stats.Filter
+      properties:
+        offset:
+          type: integer
+          minimum: 0
+        limit:
+          type: integer
+          minimum: 1
+          example: 100
+        skip:
+          type: integer
+          minimum: 0
+        order:
+          oneOf:
+            - type: string
+            - type: array
+              items:
+                type: string
+        fields:
+          oneOf:
+            - type: object
+              properties:
+                id:
+                  type: boolean
+                total_goals:
+                  type: boolean
+                total_assists:
+                  type: boolean
+                total_yellow_cards:
+                  type: boolean
+                total_red_cards:
+                  type: boolean
+              additionalProperties: false
+            - type: array
+              items:
+                type: string
+                enum:
+                  - id
+                  - total_goals
+                  - total_assists
+                  - total_yellow_cards
+                  - total_red_cards
+                example: id
+              uniqueItems: true
+          title: Stats.Fields
+      additionalProperties: false
+      x-typescript-type: '@loopback/repository#Filter<Stats>'
+    Stats.Filter1:
+      type: object
+      title: Stats.Filter
+      properties:
+        offset:
+          type: integer
+          minimum: 0
+        limit:
+          type: integer
+          minimum: 1
+          example: 100
+        skip:
+          type: integer
+          minimum: 0
+        order:
+          oneOf:
+            - type: string
+            - type: array
+              items:
+                type: string
+        where:
+          title: Stats.WhereFilter
+          type: object
+          additionalProperties: true
+        fields:
+          oneOf:
+            - type: object
+              properties:
+                id:
+                  type: boolean
+                total_goals:
+                  type: boolean
+                total_assists:
+                  type: boolean
+                total_yellow_cards:
+                  type: boolean
+                total_red_cards:
+                  type: boolean
+              additionalProperties: false
+            - type: array
+              items:
+                type: string
+                enum:
+                  - id
+                  - total_goals
+                  - total_assists
+                  - total_yellow_cards
+                  - total_red_cards
+                example: id
+              uniqueItems: true
+          title: Stats.Fields
+      additionalProperties: false
+      x-typescript-type: '@loopback/repository#Filter<Stats>'
+    Team.ScopeFilter:
+      type: object
+      properties:
+        offset:
+          type: integer
+          minimum: 0
+        limit:
+          type: integer
+          minimum: 1
+          example: 100
+        skip:
+          type: integer
+          minimum: 0
+        order:
+          oneOf:
+            - type: string
+            - type: array
+              items:
+                type: string
+        where:
+          type: object
+          additionalProperties: true
+        fields:
+          oneOf:
+            - type: object
+              properties: {}
+              additionalProperties: true
+            - type: array
+              items:
+                type: string
+              uniqueItems: true
+        include:
+          type: array
+          items:
+            type: object
+            properties: {}
+            additionalProperties: true
+      additionalProperties: false
+      title: Team.ScopeFilter
+    Team.IncludeFilter.Items:
+      title: Team.IncludeFilter.Items
+      type: object
+      properties:
+        relation:
+          type: string
+          enum:
+            - players
+            - standings
+            - homeMatches
+            - awayMatches
+        scope:
+          $ref: '#/components/schemas/Team.ScopeFilter'
+    Team.Filter:
+      type: object
+      title: Team.Filter
+      properties:
+        offset:
+          type: integer
+          minimum: 0
+        limit:
+          type: integer
+          minimum: 1
+          example: 100
+        skip:
+          type: integer
+          minimum: 0
+        order:
+          oneOf:
+            - type: string
+            - type: array
+              items:
+                type: string
+        fields:
+          oneOf:
+            - type: object
+              properties:
+                id:
+                  type: boolean
+                name:
+                  type: boolean
+                country:
+                  type: boolean
+                coach:
+                  type: boolean
+                group_name:
+                  type: boolean
+              additionalProperties: false
+            - type: array
+              items:
+                type: string
+                enum:
+                  - id
+                  - name
+                  - country
+                  - coach
+                  - group_name
+                example: id
+              uniqueItems: true
+          title: Team.Fields
+        include:
+          title: Team.IncludeFilter
+          type: array
+          items:
+            anyOf:
+              - $ref: '#/components/schemas/Team.IncludeFilter.Items'
+              - type: string
+      additionalProperties: false
+      x-typescript-type: '@loopback/repository#Filter<Team>'
+    Team.Filter1:
+      type: object
+      title: Team.Filter
+      properties:
+        offset:
+          type: integer
+          minimum: 0
+        limit:
+          type: integer
+          minimum: 1
+          example: 100
+        skip:
+          type: integer
+          minimum: 0
+        order:
+          oneOf:
+            - type: string
+            - type: array
+              items:
+                type: string
+        where:
+          title: Team.WhereFilter
+          type: object
+          additionalProperties: true
+        fields:
+          oneOf:
+            - type: object
+              properties:
+                id:
+                  type: boolean
+                name:
+                  type: boolean
+                country:
+                  type: boolean
+                coach:
+                  type: boolean
+                group_name:
+                  type: boolean
+              additionalProperties: false
+            - type: array
+              items:
+                type: string
+                enum:
+                  - id
+                  - name
+                  - country
+                  - coach
+                  - group_name
+                example: id
+              uniqueItems: true
+          title: Team.Fields
+        include:
+          title: Team.IncludeFilter
+          type: array
+          items:
+            anyOf:
+              - $ref: '#/components/schemas/Team.IncludeFilter.Items'
+              - type: string
+      additionalProperties: false
+      x-typescript-type: '@loopback/repository#Filter<Team>'
