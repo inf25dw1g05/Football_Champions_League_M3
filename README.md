@@ -59,18 +59,7 @@ As principais tecnologias e bibliotecas utilizadas neste projeto foram:
 ### Instalação Rápida (Local)
  
 1.  **Base de Dados**: Importar os scripts da pasta `mysql-init/` para o teu servidor MySQL.
-2.  **API**:
-    ```bash
-    cd api
-    npm install
-    npm start
-    ```
-3.  **Backoffice**:
-    ```bash
-    cd backoffice
-    npm install
-    npm start
-    ```
+2.  **Docker**: Usar este comando `docker compose -f docker-compose.prod.yaml` up para correr a applicação.
  
 ## Relatório
  
