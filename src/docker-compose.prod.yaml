@@ -3,7 +3,7 @@ name: champions_league
 services:
 
   db:
-    image: inf25dw1g05/champions_league_db_m3:1.0.0
+    image: inf25dw1g05/champions_league_db_m3:1.0.1
     container_name: Champions_League-db
     restart: always
     volumes:
@@ -13,7 +13,7 @@ services:
   api:
     container_name: Champions_League-api
     restart: always
-    image: inf25dw1g05/champions_league_app_m3:1.0.0
+    image: inf25dw1g05/champions_league_app_m3:1.0.1
     ports:
       - '3000:3000'
     depends_on:
@@ -21,7 +21,7 @@ services:
   backoffice:
     container_name: Champions_League-backoffice
     restart: always
-    image: inf25dw1g05/champions_league_react_m3:1.0.0
+    image: inf25dw1g05/champions_league_react_m3:1.0.1
     ports:
       - '3006:3006'
     depends_on:
