@@ -1,5 +1,5 @@
 import { Admin, Resource } from "react-admin";
-import dataProvider from "./dataProvider";
+import lb4Provider from "react-admin-lb4";
 import { Dashboard } from "./Dashboard";
 import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
 import GroupIcon from "@mui/icons-material/Group";
@@ -13,13 +13,13 @@ import { MatchList, MatchShow, MatchCreate, MatchEdit } from "./Match";
 import { MatchEventList, MatchEventShow, MatchEventCreate, MatchEventEdit } from "./MatchEvent";
 import { StandingsList } from "./Standings";
 import { StatsList, StatsShow } from "./Stats";
+const dataProvider = lb4Provider("http://localhost:3000");
 
 const App = () => (
-    <Admin 
-        dataProvider={dataProvider} 
+        <Admin dataProvider={dataProvider}
         dashboard={Dashboard}
         title="Champions League Manager"
-    >
+        >
         <Resource 
             name="teams" 
             list={TeamList} 
