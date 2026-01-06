@@ -29,7 +29,7 @@ A estrutura do repositório está organizada da seguinte forma:
 | Image  | Description | Image´s preview |
 | :---    |    :----:   |          ---: |
 | DashBoard | Final result in browser | <img src="doc\images\Dashboard.JPG">   |
-| Postman | Final result in Postman | <img src="">  |
+| Postman | Final result in Postman | <img src="doc\images\Postman_M3.JPEG">  |
 | Docker  | Multicontainer-App final result in Docker | <img src="doc\images\Docker_App.JPG" width="300">    |
  
 ## Tecnologias Utilizadas
