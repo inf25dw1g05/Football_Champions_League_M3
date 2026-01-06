@@ -54,9 +54,7 @@ const EventTypeField = () => {
 
 const MatchEventFilter = (props) => (
     <Filter {...props}>
-        <ReferenceInput label="Jogo" source="match_id" reference="matches" alwaysOn>
-            <SelectInput optionText="id" />
-        </ReferenceInput>
+        <TextInput label="ID do Jogo" source="match_id" alwaysOn />
 
         <SelectInput source="event_type" label="Tipo de Evento" choices={[
             { id: 'Goal', name: 'Golo' },
