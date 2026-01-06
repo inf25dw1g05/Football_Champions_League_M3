@@ -10,53 +10,51 @@ A arquitetura baseia-se numa API REST desenvolvida em **LoopBack 4** (Node.js/Ty
  
 A estrutura do repositório está organizada da seguinte forma:
  
-* **Código Fonte**:
-    * **[api/](api/)**: Backend da aplicação (REST API) desenvolvido em LoopBack 4.
-    * **[backoffice/](backoffice/)**: Frontend administrativo desenvolvido em React Admin.
-    * **[mysql/](mysql/)** e **[mysql-init/](mysql-init/)**: Scripts de inicialização e configuração da Base de Dados.
-    * **Dockerfiles**:
-        * [Dockerfile da API](api/Dockerfile)
-        * [Dockerfile do Backoffice](backoffice/Dockerfile)
-        * [Dockerfile da Base de Dados](mysql/Dockerfile)
-* **Documentação** na pasta **[doc/](doc/)**:
-    * Capítulo 1: [Apresentação do Projeto](doc/c1.md)
-    * Capítulo 2: [Recursos](doc/c2.md)
-    * Capítulo 3: [Produto](doc/c3.md)
-    * Capítulo 4: [Apresentação](doc/c4.md)
+- **Código Fonte**:
+    - **[api/](api/)**: Backend da aplicação (REST API) desenvolvido em LoopBack 4.
+    - **[backoffice/](backoffice/)**: Frontend administrativo desenvolvido em React Admin.
+    - **[mysql/](mysql/)** e **[mysql-init/](mysql-init/)**: Scripts de inicialização e configuração da Base de Dados.
+    - **Dockerfiles**:
+        - [Dockerfile da API](api/Dockerfile)
+        - [Dockerfile do Backoffice](backoffice/Dockerfile)
+        - [Dockerfile da Base de Dados](mysql/Dockerfile)
+- **Documentação** na pasta **[doc/](doc/)**:
+    - Capítulo 1: [Apresentação do Projeto](doc/c1.md)
+    - Capítulo 2: [Recursos](doc/c2.md)
+    - Capítulo 3: [Produto](doc/c3.md)
+    - Capítulo 4: [Apresentação](doc/c4.md)
  
 ## Galeria de Resultados
  
-| Contexto | Descrição | Pré-visualização |
-| :--- | :---: | ---: |
-| **Backoffice** | Dashboard Geral (React Admin) | <img src="doc/images/dashboard_preview.png" width="300"> |
-| **API** | API Explorer (OpenAPI/Swagger) | <img src="doc/images/api_explorer.png" width="300"> |
-| **Mobile** | Interface Responsiva | <img src="doc/images/mobile_view.png" width="300"> |
- 
-*(Nota: As imagens acima são ilustrativas, certifica-te de que existem na pasta doc/images)*
+| Image  | Description | Image´s preview |
+| :---    |    :----:   |          ---: |
+| DashBoard | Final result in browser | <img src="doc\images\Dashboard.JPG">   |
+| Postman | Final result in Postman | <img src="">  |
+| Docker  | Multicontainer-App final result in Docker | <img src="doc\images\Docker_App.JPG" width="300">    |
  
 ## Tecnologias Utilizadas
  
 As principais tecnologias e bibliotecas utilizadas neste projeto foram:
  
 ### Backend & Base de Dados
-* **[Node.js](https://nodejs.org/)**: Ambiente de execução JavaScript.
-* **[LoopBack 4](https://loopback.io/)**: Framework TypeScript para construção de APIs e Microserviços.
-* **[MySQL](https://www.mysql.com/)**: Sistema de gestão de base de dados relacional.
+- **[Node.js](https://nodejs.org/)**
+- **[LoopBack 4](https://loopback.io/)**
+- **[MySQL](https://www.mysql.com/)**
  
 ### Frontend
-* **[React Admin](https://marmelab.com/react-admin/)**: Framework para construção de aplicações B2B sobre APIs REST.
-* **[React.js](https://reactjs.org/)**: Biblioteca para construção de interfaces de utilizador.
-* **[Material UI](https://mui.com/)**: Biblioteca de componentes visuais.
+- **[React Admin](https://marmelab.com/react-admin/)**
+- **[React.js](https://reactjs.org/)**
+- **[Material UI](https://mui.com/)**
  
 ### DevOps & Ferramentas
-* **[Docker](https://www.docker.com/)**: Plataforma de contentorização.
-* **[OpenAPI](https://www.openapis.org/)**: Especificação para documentação da API.
- 
-## Como Executar
- 
+- **[Docker](https://www.docker.com/)**
+- **[OpenAPI](https://www.openapis.org/)**
+
+## Como Executar 
+
 ### Pré-requisitos
-* Node.js e npm
-* Docker (opcional, mas recomendado)
+- Node.js e npm
+- Docker
  
 ### Instalação Rápida (Local)
  
@@ -78,10 +76,10 @@ As principais tecnologias e bibliotecas utilizadas neste projeto foram:
  
 O relatório completo do projeto encontra-se dividido nos seguintes capítulos:
  
-* **Capítulo 1**: [Apresentação do Projeto](doc/c1.md) - Enquadramento e objetivos.
-* **Capítulo 2**: [Recursos](doc/c2.md) - Análise de requisitos e tecnologias.
-* **Capítulo 3**: [Produto](doc/c3.md) - Desenvolvimento, instalação e detalhes técnicos.
-* **Capítulo 4**: [Apresentação](doc/c4.md) - Conclusões e trabalho futuro.
+* **Capítulo 1**: [Descrição do Projeto](doc/c1.md)
+* **Capítulo 2**: [Recursos](doc/c2.md)
+* **Capítulo 3**: [Produto](doc/c3.md) 
+* **Capítulo 4**: [Apresentação](doc/c4.md)
  
 ## Equipa
  
